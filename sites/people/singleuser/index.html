@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Ranger-personen</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/sites/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <div id="logo">
+                RR-201 Mitgliederverwaltung
+            </div>
+            <ul>
+                <li><a href="/sites/people/index.html">Ranger</a></li>
+                <li><a href="/sites/teams/index.html">Teams</a></li>
+                <li><a href="/sites/familys/index.html">Familien</a></li>
+
+                <li><a href="#">Veranstaltungen/Camps</a></li>
+                <li class="dropdown"><a href="#">Andere Tools &nbsp;<i class="fa fa-caret-down"></i> </a>
+                    <div class="dd">
+                        <div id="u_a_c">
+                            <div id="up_arrow"></div>
+                        </div>
+                        <ul>
+                            <li><a href="#">E-Mail Verteiler</a></li>
+                            <li><a href="#">server status</a></li>
+                        </ul>
+                    </div>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        <center>
+            <h1>Mitglied verwalten</h1>
+            <div id="contentmenue">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Einstellung
+                            </th>
+                            <th>
+                                Wert
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                ID
+                            </td>
+                            <td>
+                                <input id="id" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Vorname
+                            </td>
+                            <td>
+                                <input id="first_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nachname
+                            </td>
+                            <td>
+                                <input id="second_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Geschlecht
+                            </td>
+                            <td>
+                                <select name="gender" id="gender">
+                                    <option value="männlich">Männlich</option>
+                                    <option value="weiblich">Weiblich</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Geburtstag
+                            </td>
+                            <td>
+                                <input id="date_of_birth" type="date">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Team
+                            </td>
+                            <td>
+                                <select name="team" id="team">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Addresse
+                            </td>
+                            <td>
+                                <input id="address">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                E-Mail
+                            </td>
+                            <td>
+                                <input id="email" type="email">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Telefon
+                            </td>
+                            <td>
+                                <input id="phone" type="tel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Telefon 2
+                            </td>
+                            <td>
+                                <input id="phone2" type="tel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Leiter
+                            </td>
+                            <td>
+                                <input id="leading">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Funktion
+                            </td>
+                            <td>
+                                <textarea id="function" cols="42" rows="3"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="button" id="delete_button" style="background-color: red;">Mitglied löschen</button>
+            <button class="button" id="submit">Änderungen übernehmen</button>
+        </center>
+    </div>
+    <script src="/sites/people/singleuser/script.js"></script>
+</body>
+
+</html>

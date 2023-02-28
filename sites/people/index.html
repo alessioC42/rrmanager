@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+ <head>
+   <title>Ranger-personen</title>
+       <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/sites/style.css">
+  </head>
+  <body>
+    <div id="container">
+        <nav>
+            <div id="logo">
+            RR-201 Mitgliederverwaltung
+            </div>
+            <ul>
+            <li><a href="/sites/people/index.html">Ranger</a></li>
+            <li><a href="/sites/teams/index.html">Teams</a></li>
+            <li><a href="/sites/familys/index.html">Familien</a></li>
+            
+            <li><a href="#">Veranstaltungen/Camps</a></li>
+            <li class="dropdown"><a href="#">Andere Tools &nbsp;<i class="fa fa-caret-down"></i> </a>
+            <div class="dd">
+                <div id="u_a_c"><div id="up_arrow"></div></div>
+                <ul>
+                <li><a href="#">E-Mail Verteiler</a></li>
+                <li><a href="#">server status</a></li>
+                </ul>
+                </div>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        <center>
+        <h1>RR-201 - Mitglieder</h1>
+        <div id="contentmenue">
+            <button class="button" onclick="window.location.pathname = '/sites/people/addmember/index.html'">neues Mitglied Erstellen</button>
+        </div>
+        <table class="sortable" >
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>vorname</th>
+                    <th>Nachname</th>
+                    <th>Geschlecht</th>
+                    <th>Alter + Geb</th>
+                    <th>Team</th>
+                    <th>Addresse</th>
+                    <th>E-Mail</th>
+                    <th>Telefon</th>
+                    <th>Telefon2</th>
+                    <th>Leiter</th>
+                    <th>Funktion</th>
+                </tr>
+            </thead>
+            <tbody id="table"></tbody>
+        </table>
+    </center>
+    </div>
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    <script src="/sites/people/script.js"></script>
+  </body>
+</html>

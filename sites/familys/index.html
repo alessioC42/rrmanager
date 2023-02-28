@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+ <head>
+   <title>Ranger-personen</title>
+       <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/sites/style.css">
+  </head>
+  <body>
+    <div id="container">
+        <nav>
+            <div id="logo">
+            RR-201
+            </div>
+            <ul>
+                <li><a href="/sites/people/index.html">Ranger</a></li>
+                <li><a href="/sites/teams/index.html">Teams</a></li>
+                <li><a href="/sites/familys/index.html">Familien</a></li>
+            
+            <li><a href="#">Veranstaltungen/Camps</a></li>
+            <li class="dropdown"><a href="#">Andere Tools &nbsp;<i class="fa fa-caret-down"></i> </a>
+            <div class="dd">
+                <div id="u_a_c"><div id="up_arrow"></div></div>
+                <ul>
+                <li><a href="#">E-Mail Verteiler</a></li>
+                <li><a href="#">server status</a></li>
+                </ul>
+                </div>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        <center>
+        <h1>RR-201 - Familien</h1>
+        <div id="contentmenue">
+            <p>
+            Familien werden zur Verwaltung des Jahresbetrages bei Familien mit mehr als einem Mitglied benötigt. </p> <br>
+            <button class="button" onclick="window.location.pathname = '/sites/familys/new/index.html'">neue Familie Erstellen</button>
+
+        </div>
+        <table class="sortable" >
+            <thead>
+                <tr>
+                    <th>Familienname</th>
+                    <th>Kontakt Vorname</th>
+                    <th>Kontakt Nachname</th>
+                    <th>Kontakt Geschlecht</th>
+                    <th>Kontakt Addresse</th>
+                    <th>Kontakt E-Mail</th>
+                    <th>Kontakt Telefon</th>
+                    <th>Kontakt Telefon2</th>
+                    <th>Kinder</th>
+                </tr>
+            </thead>
+            <tbody id="table"></tbody>
+        </table>
+    </center>
+    </div>
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    <script src="/sites/familys/script.js"></script>
+  </body>
+</html>

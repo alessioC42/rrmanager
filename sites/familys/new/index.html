@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Ranger-personen</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/sites/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <div id="logo">
+                RR-201
+            </div>
+            <ul>
+                <li><a href="/sites/people/index.html">Ranger</a></li>
+                <li><a href="/sites/teams/index.html">Teams</a></li>
+                <li><a href="/sites/familys/index.html">Familien</a></li>
+
+                <li><a href="#">Veranstaltungen/Camps</a></li>
+                <li class="dropdown"><a href="#">Andere Tools &nbsp;<i class="fa fa-caret-down"></i> </a>
+                    <div class="dd">
+                        <div id="u_a_c">
+                            <div id="up_arrow"></div>
+                        </div>
+                        <ul>
+                            <li><a href="#">E-Mail Verteiler</a></li>
+                            <li><a href="#">server status</a></li>
+                        </ul>
+                    </div>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        <center>
+            <h1>Familie hinzufügen</h1>
+            <div id="contentmenue">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Einstellung
+                            </th>
+                            <th>
+                                Wert
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Familienname (ID)
+                            </td>
+                            <td>
+                                <input id="family_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Kontakt Vorname
+                            </td>
+                            <td>
+                                <input id="parent_first_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Kontakt Nachname
+                            </td>
+                            <td>
+                                <input id="parent_last_name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Kontakt Geschlecht
+                            </td>
+                            <td>
+                                <select name="gender" id="parent_gender">
+                                    <option value="männlich">Männlich</option>
+                                    <option value="weiblich">Weiblich</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Kontakt Addresse
+                            </td>
+                            <td>
+                                <input id="parent_address">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Kontakt E-Mail
+                            </td>
+                            <td>
+                                <input id="parent_email" type="email">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Kontakt Telefon
+                            </td>
+                            <td>
+                                <input id="parent_phone" type="tel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Kontakt Telefon 2
+                            </td>
+                            <td>
+                                <input id="parent_phone2" type="tel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Kinder
+                            </td>
+                            <td>
+                                <select id="childs" multiple placeholder="Mitglieder Auswählen ..." autocomplete="off" name="state[]"></select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="button" id="submit">Änderungen übernehmen</button>
+        </center>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+    <script src="/sites/familys/new/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Ranger-personen</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/sites/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <div id="logo">
+                RR-201
+            </div>
+            <ul>
+                <li><a href="/sites/people/index.html">Ranger</a></li>
+                <li><a href="/sites/teams/index.html">Teams</a></li>
+                <li><a href="/sites/familys/index.html">Familien</a></li>
+
+                <li><a href="#">Veranstaltungen/Camps</a></li>
+                <li class="dropdown"><a href="#">Andere Tools &nbsp;<i class="fa fa-caret-down"></i> </a>
+                    <div class="dd">
+                        <div id="u_a_c">
+                            <div id="up_arrow"></div>
+                        </div>
+                        <ul>
+                            <li><a href="#">E-Mail Verteiler</a></li>
+                            <li><a href="#">server status</a></li>
+                        </ul>
+                    </div>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        <center>
+            <h1>Temporäres Team Erstellen</h1>
+            <div id="contentmenue">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Einstellung
+                            </th>
+                            <th>
+                                Wert
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Teamname
+                            </td>
+                            <td>
+                                <input id="teamname">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Veranstaltung
+                            </td>
+                            <td>
+                                <input id="event">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Beschreibung
+                            </td>
+                            <td>
+                                <textarea id="description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Mitglieder
+                            </td>
+                            <td>
+                                <select id="members" multiple placeholder="Mitglieder Auswählen ..." autocomplete="off" name="state[]"></select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="button" id="submit">Änderungen übernehmen</button>
+        </center>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+    <script src="/sites/tempteams/create/script.js"></script>
+</body>
+
+</html>

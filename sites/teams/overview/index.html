@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Ranger-personen</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/sites/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <div id="logo">
+                RR-201
+            </div>
+            <ul>
+                <li><a href="/sites/people/index.html">Ranger</a></li>
+                <li><a href="/sites/teams/index.html">Teams</a></li>
+                <li><a href="/sites/familys/index.html">Familien</a></li>
+
+                <li><a href="#">Veranstaltungen/Camps</a></li>
+                <li class="dropdown"><a href="#">Andere Tools &nbsp;<i class="fa fa-caret-down"></i> </a>
+                    <div class="dd">
+                        <div id="u_a_c">
+                            <div id="up_arrow"></div>
+                        </div>
+                        <ul>
+                            <li><a href="#">E-Mail Verteiler</a></li>
+                            <li><a href="#">server status</a></li>
+                        </ul>
+                    </div>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        <center>
+            <h1>Team verwalten</h1>
+            <div id="contentmenue">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Einstellung
+                            </th>
+                            <th>
+                                Wert
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Teamname (ID)
+                            </td>
+                            <td>
+                                <input id="teamname" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Leitung 1 <h6>Mitglied-ID</h6>
+                            </td>
+                            <td>
+                                <input id="leaderID1" list="datalist_members" class="members_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Leitung 2 <h6>Mitglied-ID</h6>
+                            </td>
+                            <td>
+                                <input id="leaderID2" list="datalist_members" class="members_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Leitung 3 <h6>Mitglied-ID</h6>
+                            </td>
+                            <td>
+                                <input id="leaderID3" list="datalist_members" class="members_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Mitglieder
+                            </td>
+                            <td id="memberlist"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Zusatz
+                            </td>
+                            <td>
+                                <textarea id="extra" rows="4"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="button" id="delete_button" style="background-color: red;">Team löschen</button>
+            <button class="button" id="submit">Änderungen übernehmen</button>
+        </center>
+        <datalist id="datalist_members"></datalist>
+    </div>
+    <script src="/sites/teams/overview/script.js"></script>
+    <script src="/sites/userlist.js"></script>
+</body>
+
+</html>
