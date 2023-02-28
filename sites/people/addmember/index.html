@@ -6,157 +6,153 @@
     <title>Ranger-personen</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/sites/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
 </head>
 
-<body>
-    <div id="container">
-        <nav>
-            <div id="logo">
-                RR-201 Mitgliederverwaltung
-            </div>
-            <ul>
-                <li><a href="/sites/people/index.html">Ranger</a></li>
-                <li><a href="/sites/teams/index.html">Teams</a></li>
-                <li><a href="/sites/familys/index.html">Familien</a></li>
-
-                <li><a href="#">Veranstaltungen/Camps</a></li>
-                <li class="dropdown"><a href="#">Andere Tools &nbsp;<i class="fa fa-caret-down"></i> </a>
-                    <div class="dd">
-                        <div id="u_a_c">
-                            <div id="up_arrow"></div>
-                        </div>
-                        <ul>
-                            <li><a href="#">E-Mail Verteiler</a></li>
-                            <li><a href="#">server status</a></li>
+<body style="background-color: rgb(240, 240, 240);">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/sites/icon.svg" alt="Bootstrap" width="40" height="30">
+                RR201-Mitgliederverwaltung
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sites/people/index.html">Mitglieder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sites/teams/index.html">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sites/familys/index.html">Familien</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Jahresbeitrag</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Veranstaltungen/Camps</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">E-Mail Verteiler</a></li>
+                            <li><a class="dropdown-item" href="#">Server Status</a></li>
+                            <li><a class="dropdown-item" href="#">SQL logs</a></li>
                         </ul>
-                    </div>
-            </ul>
-        </nav>
-    </div>
-    <div id="content">
-        <center>
-            <h1>Mitglied hinzufügen</h1>
-            <div id="contentmenue">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                Einstellung
-                            </th>
-                            <th>
-                                Wert
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                ID
-                            </td>
-                            <td>
-                                <input id="id" value="#" readonly>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Vorname
-                            </td>
-                            <td>
-                                <input id="first_name">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Nachname
-                            </td>
-                            <td>
-                                <input id="second_name">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Geschlecht
-                            </td>
-                            <td>
-                                <select name="gender" id="gender">
-                                    <option value="männlich">Männlich</option>
-                                    <option value="weiblich">Weiblich</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Geburtstag
-                            </td>
-                            <td>
-                                <input id="date_of_birth" type="date">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Team
-                            </td>
-                            <td>
-                                <select name="team" id="team">
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Addresse
-                            </td>
-                            <td>
-                                <input id="address">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                E-Mail
-                            </td>
-                            <td>
-                                <input id="email" type="email">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Telefon
-                            </td>
-                            <td>
-                                <input id="phone" type="tel">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Telefon 2
-                            </td>
-                            <td>
-                                <input id="phone2" type="tel">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Leiter
-                            </td>
-                            <td>
-                                <input id="leading">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Funktion
-                            </td>
-                            <td>
-                                <textarea id="function" cols="42" rows="3"></textarea>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    </li>
+                </ul>
             </div>
-            <button class="button" id="submit">Mitglied Erstellen</button>
-        </center>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="container-fluid">
+                <br>
+                <h1>Mitglied Hinzufügen</h1>
+                <div class="mb-3 row">
+                    <label for="first_name" class="col-sm-2 col-form-label">Vorname</label>
+                    <div class="col-sm-10">
+                        <input id="first_name" class="form-control">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="second_name" class="col-sm-2 col-form-label">Nachname</label>
+                    <div class="col-sm-10">
+                        <input id="second_name" class="form-control">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="gender" class="col-sm-2 col-form-label">Geschlecht</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" name="gender" id="gender">
+                            <option value="männlich">männlich</option>
+                            <option value="weiblich">weiblich</option>
+                            <option value="divers">divers</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="date_of_birth" class="col-sm-2 col-form-label">Geburtstag</label>
+                    <div class="col-sm-10">
+
+                        <input class="form-control" id="date_of_birth" type="date">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="team" class="col-sm-2 col-form-label">Team</label>
+                    <div class="col-sm-10">
+
+                        <select class="form-select" name="team" id="team">
+                            <option value="">kein Team</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="address" class="col-sm-2 col-form-label">Addresse</label>
+                    <div class="col-sm-10">
+
+                        <input class="form-control" id="address">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="email" class="col-sm-2 col-form-label">E-Mail</label>
+                    <div class="col-sm-10">
+
+                        <input class="form-control" id="email" type="email">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="phone" class="col-sm-2 col-form-label">Telefon</label>
+                    <div class="col-sm-10">
+
+                        <input class="form-control" id="phone" type="tel">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="phone2" class="col-sm-2 col-form-label">Telefon 2</label>
+                    <div class="col-sm-10">
+
+                        <input class="form-control" id="phone2" type="tel">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="leading" class="col-sm-2 col-form-label">Leiter</label>
+                    <div class="col-sm-10">
+
+                        <input class="form-control" id="leading">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="function" class="col-sm-2 col-form-label">Funktion</label>
+                    <textarea class="form-control" id="function"></textarea>
+                </div>
+                <button type="submit" id="submit" class="btn btn-primary">Mitglied Hinzufügen</button>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+
     </div>
     <script src="/sites/people/addmember/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

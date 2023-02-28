@@ -10,7 +10,7 @@ function loadTeamNames() {
             const element = teamNames[i].teamname;
             options+="<option value="+element+">"+element+"</option>"
         }
-        document.getElementById("team").innerHTML = options;
+        document.getElementById("team").innerHTML += options;
     });
     
     xhttp.open("GET", "/api/teamnames");
