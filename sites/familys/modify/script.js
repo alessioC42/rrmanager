@@ -20,7 +20,7 @@ function getMemberData(cb) {
         }
         cb(r);
     });
-    
+
     xhttp.open("GET", "/api/members/smaallist/");
     xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xhttp.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
@@ -40,16 +40,21 @@ function loadData() {
             for (let i = 0; i < members.length; i++) {
                 let member = members[i];
                 if (childs.includes(member.value)) {
-                    inputStr += "<option value='" + member.value + "' selected>" +member.text+ "</option>";
+                    inputStr += "<option value='" + member.value + "' selected>" + member.text + "</option>";
                 } else {
-                    inputStr += "<option value='" + member.value + "'>" +member.text+ "</option>"
+                    inputStr += "<option value='" + member.value + "'>" + member.text + "</option>"
                 }
-                if (i==members.length-1) {
+                if (i == members.length - 1) {
                     document.getElementById("childs").innerHTML = inputStr;
-                    new TomSelect("#childs");
+                    new TomSelect("#childs", {
+                        plugins: {
+                            remove_button: {
+                                title: 'Mitglied entfernen',
+                            }
+                        }
+                    });
                 }
             }
-            
         });
 
         document.getElementById("family_name").value = data.family_name;
@@ -62,7 +67,7 @@ function loadData() {
         document.getElementById("parent_phone2").value = data.parent_phone2;
 
     });
-    
+
     xhttp.open("GET", "/api/family/" + params.id);
     xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xhttp.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
@@ -74,11 +79,11 @@ document.getElementById("submit").addEventListener("click", () => {
     let xhttp = new XMLHttpRequest();
     let childlist = JSON.stringify(getChildIDData(document.getElementById("childs")));
     xhttp.addEventListener("load", () => {
-        
+
         window.location.pathname = "/sites/familys/index.html";
     }
     );
-    
+
     xhttp.open("POST", "/api/family/modify?data=" + String(JSON.stringify({
         family_name: document.getElementById("family_name").value,
         parent_first_name: document.getElementById("parent_first_name").value,
@@ -101,7 +106,7 @@ document.getElementById("delete_button").addEventListener("click", () => {
     if (confirm("Familie wirklich löschen?")) {
         let xhttp = new XMLHttpRequest()
         xhttp.addEventListener("load", () => {
-            
+
             window.location.pathname = "/sites/familys/index.html";
         });
         xhttp.open("DELETE", "/api/family/delete/" + document.getElementById("family_name").value);

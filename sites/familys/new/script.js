@@ -33,7 +33,13 @@ function loadData() {
             inputStr += "<option value='" + member.value + "'>" +member.text+ "</option>"
             if (i==members.length-1) {
                 document.getElementById("childs").innerHTML = inputStr;
-                new TomSelect("#childs");
+                new TomSelect("#childs", {
+                    plugins: {
+                        remove_button: {
+                            title: 'Mitglied entfernen',
+                        }
+                    }
+                });
             }
         }
     });

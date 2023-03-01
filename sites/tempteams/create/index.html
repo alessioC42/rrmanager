@@ -6,91 +6,90 @@
     <title>Ranger-personen</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/sites/style.css">
+    <link href="/sites/bootstrapV530alpha1.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
 </head>
 
 <body>
-    <div id="container">
-        <nav>
-            <div id="logo">
-                RR-201
-            </div>
-            <ul>
-                <li><a href="/sites/people/index.html">Ranger</a></li>
-                <li><a href="/sites/teams/index.html">Teams</a></li>
-                <li><a href="/sites/familys/index.html">Familien</a></li>
-
-                <li><a href="#">Veranstaltungen/Camps</a></li>
-                <li class="dropdown"><a href="#">Andere Tools &nbsp;<i class="fa fa-caret-down"></i> </a>
-                    <div class="dd">
-                        <div id="u_a_c">
-                            <div id="up_arrow"></div>
-                        </div>
-                        <ul>
-                            <li><a href="#">E-Mail Verteiler</a></li>
-                            <li><a href="#">server status</a></li>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/sites/icon.svg" alt="Bootstrap" width="40" height="30">
+                RR201-Mitgliederverwaltung
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sites/people/index.html">Mitglieder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/sites/teams/index.html">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sites/familys/index.html">Familien</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Jahresbeitrag</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Veranstaltungen/Camps</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">E-Mail Verteiler</a></li>
+                            <li><a class="dropdown-item" href="#">Server Status</a></li>
+                            <li><a class="dropdown-item" href="#">SQL logs</a></li>
                         </ul>
-                    </div>
-            </ul>
-        </nav>
-    </div>
-    <div id="content">
-        <center>
-            <h1>Temporäres Team Erstellen</h1>
-            <div id="contentmenue">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                Einstellung
-                            </th>
-                            <th>
-                                Wert
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                Teamname
-                            </td>
-                            <td>
-                                <input id="teamname">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Veranstaltung
-                            </td>
-                            <td>
-                                <input id="event">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Beschreibung
-                            </td>
-                            <td>
-                                <textarea id="description"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Mitglieder
-                            </td>
-                            <td>
-                                <select id="members" multiple placeholder="Mitglieder Auswählen ..." autocomplete="off" name="state[]"></select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    </li>
+                </ul>
             </div>
-            <button class="button" id="submit">Änderungen übernehmen</button>
-        </center>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="container-fluid">
+                <br>
+                <h1>Team Hinzufügen</h1>
+                <div class="mb-3 row">
+                    <label for="teamname" class="col-sm-2 col-form-label">Teamname (ID)</label>
+                    <div class="col-sm-10">
+                        <input id="teamname" class="form-control">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="event" class="col-sm-2 col-form-label">Veransteltung</label>
+                    <div class="col-sm-10">
+                        <input id="event" list="datalist_members" class="form-control members_input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="description" class="col-sm-2 col-form-label">Beschreibung</label>
+                    <textarea class="form-control" id="description"></textarea>
+                </div>
+                <div class="mb-3 row">
+                    <label for="members" class="col-sm-2 col-form-label">Mitglieder</label>
+                    <select id="members" multiple placeholder="Mitglieder Auswählen ..." autocomplete="off" name="state[]"></select>
+                </div>
+                <button id="submit" class="btn btn-primary">Team Hinzufügen</button>
+                <datalist id="datalist_members"></datalist>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
     <script src="/sites/tempteams/create/script.js"></script>
+    <script src="/sites/userlist.js"></script>
+    <script src="/sites/bootstrapV530alpha1.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
-
 </html>

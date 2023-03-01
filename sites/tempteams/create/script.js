@@ -35,7 +35,13 @@ getMemberData((members) => {
         inputStr += "<option value='" + member.value + "'>" +member.text+ "</option>"
         if (i==members.length-1) {
             document.getElementById("members").innerHTML = inputStr;
-            new TomSelect("#members");
+            new TomSelect("#members", {
+                plugins: {
+                    remove_button:{
+                        title:'Remove this item',
+                    }
+                }
+            });
         }
     }
     
