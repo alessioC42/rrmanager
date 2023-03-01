@@ -51,7 +51,7 @@ document.getElementById("submit").addEventListener("click", ()=> {
 });
 
 document.getElementById("delete_button").addEventListener("click", () => {
-    if (confirm("Mitglied wirklich löschen?")) {
+    if (confirm("Team wirklich löschen?")) {
         let xhttp = new XMLHttpRequest()
         xhttp.addEventListener("load", ()=>{
             

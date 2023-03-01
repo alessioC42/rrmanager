@@ -251,20 +251,35 @@ app.all("/api/teams/delete/*", (req, res) => {
     let teamname = (req.path.split("/").pop().split("?")[0]);
 
     db.all("SELECT id FROM People WHERE team='"+teamname+"';", (err, rows) => {
-        for (let i = 0; i < rows.length; i++) {
-            db.exec('UPDATE People SET team=Null WHERE id='+rows[i].id+";");
-            if (i == rows.length-1) {
-                db.exec('DELETE FROM Teams WHERE teamname="'+teamname+'";');
-                res.send("Das Team "+teamname+" wurde aus der Liste entfernt.");
+
+        if (rows.length == 0) {
+            db.exec('DELETE FROM Teams WHERE teamname="'+teamname+'";');
+            res.send("Das Team "+teamname+" wurde aus der Liste entfernt.");
+        } else {
+            for (let i = 0; i < rows.length; i++) {
+                db.exec('UPDATE People SET team=Null WHERE id='+rows[i].id+";");
+                if (i == rows.length-1) {
+                    db.exec('DELETE FROM Teams WHERE teamname="'+teamname+'";');
+                    res.send("Das Team "+teamname+" wurde aus der Liste entfernt.");
+                }
             }
         }
     });
 });
 
 app.get("/api/familys", (req, res) => {
-    db.all("SELECT * FROM Familys;", (err, rows) => {
-        if (err) {console.error(err);}
-        res.send(rows);
+    db.all("SELECT * FROM Familys", (err, rows) => {
+        for (let i = 0; i < rows.length; i++) {
+            let family = rows[i];
+            let members = "("+family.childs.slice(1, -1)+")"
+            db.all("SELECT id, first_name, second_name FROM People WHERE id In "+members+";", (err, members) => {
+                if (err) {console.error(err);}
+                rows[i].members = members;
+                if (i == rows.length -1) {
+                    res.send(rows);
+                }
+            });
+        }
     });
 });
 
