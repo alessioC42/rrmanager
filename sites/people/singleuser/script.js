@@ -89,5 +89,10 @@ document.getElementById("delete_button").addEventListener("click", () => {
     }
 })
 
+document.getElementById("mailbutton").addEventListener("click", ()=> {
+    window.location.href = "mailto:"+document.getElementById("email").value;
+})
+
+
 loadTeamNames()
 loadData()

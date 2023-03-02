@@ -115,6 +115,10 @@ document.getElementById("delete_button").addEventListener("click", () => {
 });
 
 
+document.getElementById("mailbutton").addEventListener("click", ()=> {
+    window.location.href = "mailto:"+document.getElementById("parent_email").value;
+})
+
 function getChildIDData(select) {
     var result = [];
     var options = select && select.options;

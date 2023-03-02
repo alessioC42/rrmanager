@@ -3,6 +3,10 @@ const sqlite = require("sqlite3");
 const app = express();
 const port = 3000;
 
+function isValidSQLstring(string) {
+        return  !(["'", '"', ";", "--", "\\", "()", "LOAD_F­ILE­(", "@@"].some(substring=>string.includes(substring)));
+}
+
 var db = new sqlite.Database(__dirname+"/database.db", (err) => {
 if (err) {
     return console.error(err.message);
@@ -167,7 +171,6 @@ app.post("/api/modifyuser/", (req, res) => {
     }
     newValues = newValues.slice(0, -1);
 
-    //console.log('UPDATE People SET '+newValues+' WHERE id='+id);
     db.exec('UPDATE People SET '+newValues+' WHERE id='+id);
     res.send("Das Mitglied "+userdata.first_name+" "+userdata.second_name+" wurde modifiziert.");
 });
@@ -230,6 +233,19 @@ app.post("/api/family/new/", (req, res) => {
 
 app.all("/api/delmember/*", (req, res) => {
     let id = Number(req.path.split("/").pop().split("?")[0]);
+    //tempteam and family connections
+
+    db.all("SELECT family_name, childs FROM Familys WHERE '"+id+"', in Childs", (err, rows)=>{
+        for (let i = 0; i < rows.length; i++) {
+            const e = rows[i];
+            let childs = JSON.parse(e.childs);
+            if (childs.includes(String(id))) {
+                childs.pop(childs.indexOf(String(id)));
+                db.exec("UPDATE Familys SET Childs='"+JSON.stringify(childs)+"' WHERE family_name='"+e.family_name+"'");
+            }
+        }
+    });
+
     db.exec('DELETE FROM People WHERE id='+id+';');
     res.send("Das Mitglied "+id+" wurde aus der Liste entfernt.");
 });

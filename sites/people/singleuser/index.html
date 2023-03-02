@@ -63,6 +63,12 @@
                 <h1>Mitglied Hinzufügen</h1>
                 <div class="mb-3 row">
                     <div class="input-group">
+                        <span class="input-group-text">ID</span>
+                        <input id="id" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="input-group">
                         <span class="input-group-text">Vorname</span>
                         <input id="first_name" class="form-control">
                     </div>
@@ -107,6 +113,7 @@
                     <div class="input-group">
                         <span class="input-group-text">E-Mail</span>
                         <input class="form-control" id="email" type="email">
+                        <button id="mailbutton" title="E-Mail senden" class="btn btn-outline-primary">@</button>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -131,7 +138,9 @@
                     <label for="function" class="col-sm-2 col-form-label">Funktion</label>
                     <textarea class="form-control" id="function"></textarea>
                 </div>
-                <button type="submit" id="submit" class="btn btn-primary">Mitglied Hinzufügen</button>
+                <button id="submit" class="btn btn-primary">Änderungen speichern</button>
+                <button id="delete_button" class="btn btn-danger">Löschen</button>
+
             </div>
         </div>
         <div class="col-md-3"></div>
