@@ -60,28 +60,22 @@
         <div class="col-md-6">
             <div class="container-fluid">
                 <br>
-                <h1>Mitglied Modifizieren</h1>
+                <h1>Mitglied Hinzufügen</h1>
                 <div class="mb-3 row">
-                    <label for="id" class="col-sm-2 col-form-label">ID</label>
-                    <div class="col-sm-10">
-                        <input id="id" class="form-control" disabled>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="first_name" class="col-sm-2 col-form-label">Vorname</label>
-                    <div class="col-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-text">Vorname</span>
                         <input id="first_name" class="form-control">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="second_name" class="col-sm-2 col-form-label">Nachname</label>
-                    <div class="col-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-text">Nachname</span>
                         <input id="second_name" class="form-control">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="gender" class="col-sm-2 col-form-label">Geschlecht</label>
-                    <div class="col-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-text">Geschlecht</span>
                         <select class="form-select" name="gender" id="gender">
                             <option value="männlich">männlich</option>
                             <option value="weiblich">weiblich</option>
@@ -90,53 +84,46 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="date_of_birth" class="col-sm-2 col-form-label">Geburtstag</label>
-                    <div class="col-sm-10">
-
+                    <div class="input-group">
+                        <span class="input-group-text">Genurtstag</span>
                         <input class="form-control" id="date_of_birth" type="date">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="team" class="col-sm-2 col-form-label">Team</label>
-                    <div class="col-sm-10">
-
+                    <div class="input-group">
+                        <span class="input-group-text">Team</span>
                         <select class="form-select" name="team" id="team">
                             <option value="">kein Team</option>
                         </select>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="address" class="col-sm-2 col-form-label">Addresse</label>
-                    <div class="col-sm-10">
-
+                    <div class="input-group">
+                        <span class="input-group-text">Addresse</span>
                         <input class="form-control" id="address">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="email" class="col-sm-2 col-form-label">E-Mail</label>
-                    <div class="col-sm-10">
-
+                    <div class="input-group">
+                        <span class="input-group-text">E-Mail</span>
                         <input class="form-control" id="email" type="email">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="phone" class="col-sm-2 col-form-label">Telefon</label>
-                    <div class="col-sm-10">
-
+                    <div class="input-group">
+                        <span class="input-group-text">Telefon 1</span>
                         <input class="form-control" id="phone" type="tel">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="phone2" class="col-sm-2 col-form-label">Telefon 2</label>
-                    <div class="col-sm-10">
-
+                    <div class="input-group">
+                        <span class="input-group-text">Telefon 2</span>
                         <input class="form-control" id="phone2" type="tel">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="leading" class="col-sm-2 col-form-label">Leiter</label>
-                    <div class="col-sm-10">
-
+                    <div class="input-group">
+                        <span class="input-group-text">Leiter</span>
                         <input class="form-control" id="leading">
                     </div>
                 </div>
@@ -144,8 +131,7 @@
                     <label for="function" class="col-sm-2 col-form-label">Funktion</label>
                     <textarea class="form-control" id="function"></textarea>
                 </div>
-                <button id="submit" class="btn btn-primary">Änderungen übernehmen</button>
-                <button id="delete_button" class="btn btn-danger">Mitglied löschen</button>
+                <button type="submit" id="submit" class="btn btn-primary">Mitglied Hinzufügen</button>
             </div>
         </div>
         <div class="col-md-3"></div>
