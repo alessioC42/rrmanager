@@ -60,7 +60,7 @@
         <div class="col-md-6">
             <div class="container-fluid">
                 <br>
-                <h1>Mitglied Hinzufügen</h1>
+                <h1>Mitglied bearbeiten</h1>
                 <div class="mb-3 row">
                     <div class="input-group">
                         <span class="input-group-text">ID</span>
@@ -105,6 +105,13 @@
                 </div>
                 <div class="mb-3 row">
                     <div class="input-group">
+                        <span class="input-group-text">Familie</span>
+                        <select class="form-select" id="family">
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="input-group">
                         <span class="input-group-text">Addresse</span>
                         <input class="form-control" id="address">
                     </div>
@@ -128,14 +135,15 @@
                         <input class="form-control" id="phone2" type="tel">
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <div class="input-group">
-                        <span class="input-group-text">Leiter</span>
-                        <input class="form-control" id="leading">
-                    </div>
+                <div class="input-group">
+                    <span class="input-group-text">Aktiv</span>
+                    <select class="form-select" id="active">
+                        <option value="ja">Ja</option>
+                        <option value="nein">Nein</option>
+                    </select>
                 </div>
                 <div class="mb-3 row">
-                    <label for="function" class="col-sm-2 col-form-label">Funktion</label>
+                    <label for="function" class="col-sm-2 col-form-label">Zusatz</label>
                     <textarea class="form-control" id="function"></textarea>
                 </div>
                 <button id="submit" class="btn btn-primary">Änderungen speichern</button>

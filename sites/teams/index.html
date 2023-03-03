@@ -1,98 +1,111 @@
 <!DOCTYPE html>
 
 <html>
- <head>
-   <title>Ranger-personen</title>
-       <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href="/sites/bootstrapV530alpha1.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  </head>
-  <body>
+
+<head>
+    <title>Ranger-personen</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/sites/bootstrapV530alpha1.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-            <img src="/sites/icon.svg" alt="Bootstrap" width="40" height="30">
-            RR201-Mitgliederverwaltung
+                <img src="/sites/icon.svg" alt="Bootstrap" width="40" height="30">
+                RR201-Mitgliederverwaltung
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link" href="/sites/people/index.html">Mitglieder</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link active" href="/sites/teams/index.html">Teams</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/sites/familys/index.html">Familien</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Jahresbeitrag</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Veranstaltungen/Camps</a>
-                </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tools
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">E-Mail Verteiler</a></li>
-                    <li><a class="dropdown-item" href="#">Server Status</a></li>
-                    <li><a class="dropdown-item" href="#">SQL logs</a></li>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sites/people/index.html">Mitglieder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/sites/teams/index.html">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sites/familys/index.html">Familien</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Jahresbeitrag</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Veranstaltungen/Camps</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Tools
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">E-Mail Verteiler</a></li>
+                            <li><a class="dropdown-item" href="#">Server Status</a></li>
+                            <li><a class="dropdown-item" href="#">SQL logs</a></li>
+                        </ul>
+                    </li>
                 </ul>
-                </li>
-            </ul>
             </div>
         </div>
     </nav>
     <div class="container-fluid">
         <center>
-        <h1>RR-201 - Teams</h1>
-        <div id="contentmenue">
-            Die Normalen Teams des Stammes<br><br>
-            <button class="btn btn-primary" onclick="window.location.pathname = '/sites/teams/create/index.html'">neues Team Erstellen</button>
-        </div>
-        <table class="sortable table table-striped" >
-            <thead>
-                <tr>
-                    <th>Teamname</th>
-                    <th>Leitung 1</th>
-                    <th>Leitung 2</th>
-                    <th>Leitung 3</th>
-                    <th>Mitglieder</th>
-                    <th>Zusatz</th>
-                </tr>
-            </thead>
-            <tbody id="table_teams"></tbody>
-        </table>
-    </center>
+            <br>
+            <h1>RR-201 - Teams</h1>
+            <div id="contentmenue">
+                Die Normalen Teams des Stammes<br><br>
+                <button class="btn btn-primary"
+                    onclick="window.location.pathname = '/sites/teams/create/index.html'">neues Team Erstellen</button>
+            </div>
+            <table class="sortable table table-striped">
+                <thead>
+                    <tr>
+                        <th>Teamname</th>
+                        <th>Leitung 1</th>
+                        <th>Leitung 2</th>
+                        <th>Leitung 3</th>
+                        <th>Mitglieder</th>
+                        <th>Zusatz</th>
+                    </tr>
+                </thead>
+                <tbody id="table_teams"></tbody>
+            </table>
+        </center>
     </div>
     <div class="container-fluid">
         <center>
-        <h1>RR-201 - temporäre Teams</h1>
-        <div id="contentmenue">
-            Temporäre Teams haben keine Leitung und sind nicht mit den Mitgliedern selber verknüpft, sie sind beispielsweise für Zeltzuteilungen geeignet. <br><br>
-            <button class="btn btn-primary" onclick="window.location.pathname = '/sites/tempteams/create/index.html'">neues temporäres Team Erstellen</button>
-        </div>
-        <table class="sortable table table-striped" >
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Teamname</th>
-                    <th>Event</th>
-                    <th>Mitglieder</th>
-                    <th>beschreibung</th>
-                </tr>
-            </thead>
-            <tbody id="table_tempteams"></tbody>
-        </table>
-    </center>
+            <h1>RR-201 - temporäre Teams</h1>
+            <div id="contentmenue">
+                Temporäre Teams haben keine Leitung und sind nicht mit den Mitgliedern selber verknüpft, sie sind
+                beispielsweise für Zeltzuteilungen geeignet. <br><br>
+                <button class="btn btn-primary"
+                    onclick="window.location.pathname = '/sites/tempteams/create/index.html'">neues temporäres Team
+                    Erstellen</button>
+            </div>
+            <table class="sortable table table-striped">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Teamname</th>
+                        <th>Event</th>
+                        <th>Mitglieder</th>
+                        <th>beschreibung</th>
+                    </tr>
+                </thead>
+                <tbody id="table_tempteams"></tbody>
+            </table>
+        </center>
     </div>
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-    <script src="/sites/bootstrapV530alpha1.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="/sites/bootstrapV530alpha1.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
     <script src="/sites/teams/script.js"></script>
-  </body>
+</body>
+
 </html>

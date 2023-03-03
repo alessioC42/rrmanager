@@ -53,11 +53,19 @@ app.get("/api/members/smaallist/", (_req, res) => {
     })
 });
 
-app.get("/api/family/*", (req, res) => {
-    let id = (req.path.split("/").pop());
+app.get("/api/family/", (req, res) => {
+    let id = req.query.id;
     db.all("SELECT * FROM Familys WHERE family_name='"+id+"';", (err, rows) => {
         if (err) {console.error(err);}
-        res.send(rows[0]);
+        db.all("SELECT id FROM People WHERE family='"+id+"';", (errr, members)=> {
+            if (errr) {console.error(errr);}
+            if (members.length == 0) {
+                rows[0].childs = [];
+            } else {
+                rows[0].childs = members.map(x => x.id);
+            }
+            res.send(rows[0]);
+        })
     });
 });
 
@@ -178,13 +186,25 @@ app.post("/api/modifyuser/", (req, res) => {
 app.post("/api/family/modify/", (req, res) => {
     let userdata = JSON.parse(req.query.data);
     let family_name = userdata.family_name;
+    let childs = "("+userdata.childs.slice(1, -1)+")";
     delete userdata.family_name;
+    delete userdata.childs;
     let newValues = "";
     for (const key in userdata) {
         newValues+=key+"='"+userdata[key]+"',";
     }
     newValues = newValues.slice(0, -1);
+
+    db.all("SELECT id FROM People WHERE family='"+family_name+"';", (err, rows)=>{
+        let memberIDs = "("+JSON.stringify(rows.map(x => x.id)).slice(1, -1)+")";
+        db.exec('UPDATE People SET family=null WHERE id IN '+memberIDs+';')
+        db.exec('UPDATE People SET family="'+family_name+'" WHERE id IN '+childs+';');
+    })
+
     db.exec('UPDATE Familys SET '+newValues+' WHERE family_name="'+family_name+'";');
+
+    
+
     res.send("Die Familie "+family_name+" wurde modifiziert.");
 });
 
@@ -218,8 +238,10 @@ app.post("/api/addmember/", (req, res) => {
 
 app.post("/api/family/new/", (req, res) => {
     let userdata = JSON.parse(req.query.data);
+    let childs = JSON.parse(userdata.childs);
+    delete userdata.childs;
     let keys = "";
-    let data = "'"
+    let data = "'";
     for (const key in userdata) {
         keys+=key+", ";
         data+=userdata[key]+"', '";
@@ -228,23 +250,19 @@ app.post("/api/family/new/", (req, res) => {
     data = data.slice(0, -3);
 
     db.exec('INSERT INTO Familys ('+keys+') VALUES ('+data+");");
+
+    for (let i = 0; i < childs.length; i++) {
+        const child = childs[i];
+        db.exec("UPDATE People SET family='"+userdata.family_name+"' WHERE id="+child+";");
+    }
+
     res.send("Die Familie "+userdata.family_name+" wurde der Liste hinzugefügt.");
 });
 
-app.all("/api/delmember/*", (req, res) => {
-    let id = Number(req.path.split("/").pop().split("?")[0]);
+app.all("/api/delmember/", (req, res) => {
+    let id = Number(req.query.id);
     //tempteam and family connections
 
-    db.all("SELECT family_name, childs FROM Familys WHERE '"+id+"', in Childs", (err, rows)=>{
-        for (let i = 0; i < rows.length; i++) {
-            const e = rows[i];
-            let childs = JSON.parse(e.childs);
-            if (childs.includes(String(id))) {
-                childs.pop(childs.indexOf(String(id)));
-                db.exec("UPDATE Familys SET Childs='"+JSON.stringify(childs)+"' WHERE family_name='"+e.family_name+"'");
-            }
-        }
-    });
 
     db.exec('DELETE FROM People WHERE id='+id+';');
     res.send("Das Mitglied "+id+" wurde aus der Liste entfernt.");
@@ -263,8 +281,8 @@ app.all("/api/tempteam/delete/", (req, res) => {
 });
 
 
-app.all("/api/teams/delete/*", (req, res) => {
-    let teamname = (req.path.split("/").pop().split("?")[0]);
+app.all("/api/teams/delete/", (req, res) => {
+    let teamname = (req.query.teamname)
 
     db.all("SELECT id FROM People WHERE team='"+teamname+"';", (err, rows) => {
 
@@ -284,19 +302,24 @@ app.all("/api/teams/delete/*", (req, res) => {
 });
 
 app.get("/api/familys", (req, res) => {
-    db.all("SELECT * FROM Familys", (err, rows) => {
-        for (let i = 0; i < rows.length; i++) {
-            let family = rows[i];
-            let members = "("+family.childs.slice(1, -1)+")"
-            db.all("SELECT id, first_name, second_name FROM People WHERE id In "+members+";", (err, members) => {
-                if (err) {console.error(err);}
-                rows[i].members = members;
-                if (i == rows.length -1) {
-                    res.send(rows);
-                }
-            });
-        }
-    });
+    if (!(req.query.smaal)) {
+        db.all("SELECT * FROM Familys", (err, rows) => {
+            for (let i = 0; i < rows.length; i++) {
+                let family = rows[i];
+                db.all("SELECT id, first_name, second_name FROM People WHERE family='"+family.family_name+"';", (err, members) => {
+                    if (err) {console.error(err);}
+                    rows[i].members = members;
+                    if (i == rows.length -1) {
+                        res.send(rows);
+                    }
+                });
+            }
+        });
+    }   else   {
+        db.all("SELECT family_name FROM Familys", (_err, rows) => {
+            res.send(rows.map(x => x.family_name));
+        });
+    }
 });
 
 app.listen(port, ()=>{

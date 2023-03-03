@@ -5,7 +5,7 @@ function insertAllPeople() {
         let data = JSON.parse(xhttp.responseText);
         for (let i = 0; i < data.length; i++) {
             const e = data[i];
-            table.innerHTML += "<td><a href='/sites/people/singleuser/index.html?id="+e.id+"'>"+e.id+"</a></td><td>"+e.first_name+"</td><td>"+e.second_name+"</td><td>"+e.gender+"</td><td>"+getAge(e.date_of_birth)+"<br>"+e.date_of_birth+"</td><td>"+e.team+"</td><td>"+e.address+"</td><td><a href='mailto:"+e.email+"'>"+e.email+"</a></td><td>"+e.phone+"</td><td>"+e.phone2+"</td><td>"+e.leading+"</td><td>"+e.function+"</td>"
+            table.innerHTML += "<td><a href='/sites/people/singleuser/index.html?id="+e.id+"'>"+e.id+"</a></td><td>"+e.first_name+"</td><td>"+e.second_name+"</td><td>"+e.gender+"</td><td>"+getAge(e.date_of_birth)+"</td><td>"+e.date_of_birth+"</td><td>"+nts(e.team)+"</td><td>"+nts(e.family)+"</td><td>"+e.address+"</td><td><a href='mailto:"+e.email+"'>"+e.email+"</a></td><td>"+e.phone+"</td><td>"+e.phone2+"</td><td>"+e.active+"</td><td>"+e.function+"</td>"
         }
     });
     
@@ -14,6 +14,13 @@ function insertAllPeople() {
     xhttp.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
     xhttp.setRequestHeader("Pragma", "no-cache");
     xhttp.send();
+}
+
+function nts(str) {
+    if (str == null || str=="null"|| str=="None" || str=="") {
+        return "-";
+    } else
+    {return str}
 }
 
 function getAge(dateString) {
@@ -27,5 +34,26 @@ function getAge(dateString) {
     }
     return age;
 }
+
+document.getElementById("searchbar").addEventListener("keyup", (_ev)=> {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchbar");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("memberlist");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+        }
+    }
+});
 
 insertAllPeople();

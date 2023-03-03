@@ -35,7 +35,7 @@ function loadData() {
 
 
         getMemberData((members) => {
-            let childs = JSON.parse(data.childs);
+            let childs = (data.childs);
             let inputStr = ""
             for (let i = 0; i < members.length; i++) {
                 let member = members[i];
@@ -68,7 +68,7 @@ function loadData() {
 
     });
 
-    xhttp.open("GET", "/api/family/" + params.id);
+    xhttp.open("GET", "/api/family?id=" + params.id);
     xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xhttp.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
     xhttp.setRequestHeader("Pragma", "no-cache");

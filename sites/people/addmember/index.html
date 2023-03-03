@@ -99,6 +99,13 @@
                 </div>
                 <div class="mb-3 row">
                     <div class="input-group">
+                        <span class="input-group-text">Familie</span>
+                        <select class="form-select" id="family">
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="input-group">
                         <span class="input-group-text">Addresse</span>
                         <input class="form-control" id="address">
                     </div>
@@ -123,12 +130,15 @@
                 </div>
                 <div class="mb-3 row">
                     <div class="input-group">
-                        <span class="input-group-text">Leiter</span>
-                        <input class="form-control" id="leading">
+                        <span class="input-group-text">Aktiv</span>
+                        <select class="form-select" id="active">
+                            <option value="ja">Ja</option>
+                            <option value="nein">Nein</option>
+                        </select>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="function" class="col-sm-2 col-form-label">Funktion</label>
+                    <label for="function" class="col-sm-2 col-form-label">Zusatz</label>
                     <textarea class="form-control" id="function"></textarea>
                 </div>
                 <button type="submit" id="submit" class="btn btn-primary">Mitglied Hinzufügen</button>

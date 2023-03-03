@@ -48,26 +48,31 @@
           </div>
         </div>
       </nav>
-    <div class="container-fluid">
+    <div class="container-fluid overflow-auto">
         <center>
         <br>
         <h1 class="h1">RR-201 - Mitglieder</h1>
         <button class="btn btn-primary" onclick="window.location.pathname = '/sites/people/addmember/index.html'">neues Mitglied Erstellen</button>
-        <table class="sortable table table-striped">
+        <div class="container-fluid">
+          <input id="searchbar" class="form-control" placeholder="Suche... //aktuell nur vorname">
+        </div>
+        <table id="memberlist" class="sortable table table-striped">
             <thead>
                 <tr>
                     <th>id</th>
                     <th>vorname</th>
                     <th>Nachname</th>
                     <th>Geschlecht</th>
-                    <th>Alter + Geb</th>
+                    <th>Alter</th>
+                    <th>Geburtstag</th>
                     <th>Team</th>
+                    <th>Familie</th>
                     <th>Addresse</th>
                     <th>E-Mail</th>
                     <th>Telefon</th>
                     <th>Telefon2</th>
-                    <th>Leiter</th>
-                    <th>Funktion</th>
+                    <th>Aktiv?</th>
+                    <th>Zusatz</th>
                 </tr>
             </thead>
             <tbody id="table"></tbody>

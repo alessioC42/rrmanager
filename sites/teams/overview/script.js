@@ -57,7 +57,7 @@ document.getElementById("delete_button").addEventListener("click", () => {
             
             window.location.pathname = "/sites/people/index.html";
         });
-        xhttp.open("DELETE", "/api/teams/delete/"+document.getElementById("teamname").value);
+        xhttp.open("DELETE", "/api/teams/delete/?teamname="+document.getElementById("teamname").value);
         xhttp.send();
     }
 })
