@@ -19,12 +19,13 @@ function loadData() {
             document.getElementById("phone2").value = data.phone2;
             document.getElementById("active").value = data.active;
             document.getElementById("function").value = data.function;
+            loadContactPersonData(data.family);
         } else {
             document.getElementById("id").value = params.id;
         }
     });
     
-    xhttp.open("GET", "/api/user/"+params.id);
+    xhttp.open("GET", "/api/user/?id="+params.id);
     xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
     xhttp.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
     xhttp.setRequestHeader("Pragma", "no-cache");
@@ -50,8 +51,30 @@ function loadTeamNames() {
     xhttp.send();
 }
 
+function loadContactPersonData(familyName) {
+    if (familyName == "" || familyName == "null" ||familyName == "-" ||familyName == null){
+        document.getElementById("contactperson").innerHTML = "<br><br><h3>Kontakt Person</h3><i>Es ist keine Familie Hinterlegt</i>";
+    } else {
+        let xhttp = new XMLHttpRequest();
+        xhttp.addEventListener("load", ()=> {
+            familyData = JSON.parse(xhttp.responseText);
+            document.getElementById("parent_first_name").value=familyData.parent_first_name;
+            document.getElementById("parent_second_name").value=familyData.parent_last_name;
+            document.getElementById("parent_gender").value=familyData.parent_gender;
+            document.getElementById("parent_address").value = familyData.parent_address;
+            document.getElementById("parent_email").value = familyData.parent_email;
+            document.getElementById("parent_phone").value = familyData.parent_phone;
+            document.getElementById("parent_phone2").value = familyData.parent_phone2;
+            document.getElementById("editcontact").addEventListener("click", (_ev) => {
+                window.location.href="/sites/familys/modify/index.html?id="+familyName;
+            });
+        });
+        xhttp.open("GET", "/api/family?id="+familyName);
+        xhttp.send();
+    }
+}
+
 function loadFamilyNames() {
-    //
     let xhttp = new XMLHttpRequest();
     xhttp.addEventListener("load", ()=> {
         let familyNames = JSON.parse(xhttp.responseText);
@@ -110,7 +133,9 @@ document.getElementById("delete_button").addEventListener("click", () => {
 document.getElementById("mailbutton").addEventListener("click", ()=> {
     window.location.href = "mailto:"+document.getElementById("email").value;
 })
-
+document.getElementById("parent_mailbutton").addEventListener("click", ()=> {
+    window.location.href = "mailto:"+document.getElementById("parent_email").value;
+})
 
 loadTeamNames();
 loadFamilyNames();

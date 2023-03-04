@@ -34,8 +34,8 @@ app.get("/api/users", (req, res) => {
     });
 });
 
-app.get("/api/user/*", (req, res) => {
-    let id = Number(req.path.split("/").pop());
+app.get("/api/user/", (req, res) => {
+    let id = req.query.id
     if (isNaN(id) ==false) {
         db.all("SELECT * FROM People WHERE id="+id+";", (err, rows) => {
             if (err) {console.error(err);}
@@ -270,6 +270,7 @@ app.all("/api/delmember/", (req, res) => {
 
 app.all("/api/family/delete/*", (req, res) => {
     let family_name = (req.path.split("/").pop().split("?")[0]);
+    db.exec('UPDATE People SET family=null WHERE family="'+family_name+'"');
     db.exec('DELETE FROM Familys WHERE family_name="'+family_name+'";');
     res.send("Die Familie "+family_name+" wurde aus der Liste entfernt.");
 });
