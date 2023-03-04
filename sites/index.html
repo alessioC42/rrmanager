@@ -46,6 +46,62 @@
         </div>
       </div>
     </nav>
+    <div class="text-center">
+      <br>
+      <h1>Dashboard</h1>
+      <br>
+        <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <h4>schnelle Aktionen</h4>
+            <div class="btn-group-vertical text-" role="group" aria-label="Vertical button group">
+              <button type="button" onclick="window.location.href='/sites/people/addmember/index.html'" class="btn  btn-outline-dark">👤   neues Mitglied</button>
+              <button type="button" onclick="window.location.href='/sites/teams/create/index.html'" class="btn btn-outline-dark">👤👤 neues Team</button>
+              <button type="button" onclick="window.location.href='/sites/tempteams/create/index.html'" class="btn btn-outline-dark">👤⛺ neues temporäres Team</button>
+              <button type="button" onclick="window.location.href='/sites/familys/new/index.html'" class="btn btn-outline-dark"> 👪  neue Familie</button>
+              <button type="button" onclick="alert('noch net da')" class="btn btn-outline-dark">⛺ neue Veranstalung</button>
+              <button type="button" onclick="alert('noch net da')" class="btn btn-outline-dark">📧 E-Mail Verteiler</button>
+            </div>
+          </div>
+          <div class="col-6 text-center">
+            <h4>Mitglieder</h4>
+            <div class="progress mt-1" role="progressbar" aria-label="Example 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px">
+              <div class="progress-bar bg-success" style="width: 50%">Aktiv: 50%</div>
+              <div class="progress-bar bg-danger" style="width: 50%">Inaktiv: 50%</div>
+            </div>
+            <p>
+              durchschnittliches Alter:
+            </p>
+            <h6>Was kann hier noch hin?</h6>
+
+          </div>
+          <div class="col-3">
+            <h4>Veranstaltungen</h4>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Bundescamp 22</h5>
+                </div>
+                <p class="mb-1">infos..</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Holzaktion</h5>
+                </div>
+                <p class="mb-1">infos..</p>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Sommercamp 2023</h5>
+                </div>
+                <p class="mb-1">infos..</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="/sites/bootstrapV530alpha1.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>

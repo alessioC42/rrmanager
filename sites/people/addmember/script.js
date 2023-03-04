@@ -61,7 +61,22 @@ document.getElementById("submit").addEventListener("click", ()=> {
     xhttp.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
     xhttp.setRequestHeader("Pragma", "no-cache");
     xhttp.send()
-})
+});
+
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
+}
+document.getElementById("date_of_birth").addEventListener("change", (_ev) => {
+    document.getElementById("age_of_person_calculated").innerText = "Alter: "+getAge(document.getElementById("date_of_birth").value);
+});
 
 loadTeamNames();
 loadFamilyNames();

@@ -20,6 +20,7 @@ function loadData() {
             document.getElementById("active").value = data.active;
             document.getElementById("function").value = data.function;
             loadContactPersonData(data.family);
+            document.getElementById("age_of_person_calculated").innerText = "Alter: "+getAge(document.getElementById("date_of_birth").value);
         } else {
             document.getElementById("id").value = params.id;
         }
@@ -130,12 +131,27 @@ document.getElementById("delete_button").addEventListener("click", () => {
     }
 })
 
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
+}
+document.getElementById("date_of_birth").addEventListener("change", (_ev) => {
+    document.getElementById("age_of_person_calculated").innerText = "Alter: "+getAge(document.getElementById("date_of_birth").value);
+});
 document.getElementById("mailbutton").addEventListener("click", ()=> {
     window.location.href = "mailto:"+document.getElementById("email").value;
-})
+});
 document.getElementById("parent_mailbutton").addEventListener("click", ()=> {
     window.location.href = "mailto:"+document.getElementById("parent_email").value;
-})
+});
+
 
 loadTeamNames();
 loadFamilyNames();
