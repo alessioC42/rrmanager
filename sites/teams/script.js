@@ -1,12 +1,49 @@
 function insertAllTeams() {
     let table = document.getElementById("table_teams");
     let xhttp = new XMLHttpRequest();
-    xhttp.addEventListener("load", ()=> {
+    xhttp.addEventListener("load", () => {
         let data = JSON.parse(xhttp.responseText);
         for (let i = 0; i < data.length; i++) {
             const e = data[i];
-            table.innerHTML += "<td><a href='/sites/teams/overview/index.html?id="+nts(e.teamname)+"'>"+nts(e.teamname)+"</a></td><td>"+nts(e.leaderID1)+"</td><td>"+nts(e.leaderID2)+"</td><td>"+nts(e.leaderID3)+"</td><td id='"+nts(e.teamname)+"-Team'></td><td>"+nts(e.extra)+"</td>";
-            createPeopleStringAndInsertAt(e.members, e.teamname+"-Team")
+            let teamLink = document.createElement("a");
+            teamLink.href = '/sites/teams/overview/index.html?id=' + nts(e.teamname);
+            teamLink.textContent = nts(e.teamname);
+
+            let teamLinkCell = document.createElement("td");
+            teamLinkCell.appendChild(teamLink);
+
+            let leader1Cell = document.createElement("td");
+            leader1Cell.textContent = nts(e.leaderID1);
+
+            let leader2Cell = document.createElement("td");
+            leader2Cell.textContent = nts(e.leaderID2);
+
+            let leader3Cell = document.createElement("td");
+            leader3Cell.textContent = nts(e.leaderID3);
+
+            let memberCell = document.createElement("td");
+            memberCell.id = nts(e.teamname) + "-Team";
+
+            for (let i = 0; i < e.members.length; i++) {
+                const name = e.members[i];
+                let link = document.createElement("a");
+                link.textContent = "[" + name.id + "] " + name.first_name + " " + name.second_name;
+                link.href = "/sites/people/singleuser/index.html?id=" + encodeURIComponent(name.id);
+                memberCell.appendChild(link);
+                memberCell.appendChild(document.createTextNode("; "));
+            }
+
+            let extraCell = document.createElement("td");
+            extraCell.textContent = nts(e.extra);
+
+            let row = document.createElement("tr");
+            row.appendChild(teamLinkCell);
+            row.appendChild(leader1Cell);
+            row.appendChild(leader2Cell);
+            row.appendChild(leader3Cell);
+            row.appendChild(memberCell);
+            row.appendChild(extraCell);
+            table.appendChild(row);
         }
     });
 
@@ -20,14 +57,43 @@ function insertAllTeams() {
 function insertAllTempTeams() {
     let table = document.getElementById("table_tempteams");
     let xhttp = new XMLHttpRequest();
-    xhttp.addEventListener("load", ()=> {
+    xhttp.addEventListener("load", () => {
         let data = JSON.parse(xhttp.responseText);
         for (let i = 0; i < data.length; i++) {
             const e = data[i];
-            table.innerHTML += "<td><a href='/sites/tempteams/overview/index.html?id="+nts(e.id)+"'>"+nts(e.id)+"</a></td><td>"+nts(e.teamname)+"</td><td>"+nts(e.event)+"</td><td id='"+nts(e.id)+"-TempTeam'></td><td>"+nts(e.description)+"</td>";
-            createPeopleStringAndInsertAt(e.members, e.id+"-TempTeam");
+            let tr = document.createElement('tr');
+            let td1 = document.createElement('td');
+            let a = document.createElement('a');
+            a.href = '/sites/tempteams/overview/index.html?id=' + nts(e.id);
+            a.textContent = nts(e.id);
+            td1.appendChild(a);
+            tr.appendChild(td1);
+            let td2 = document.createElement('td');
+            td2.textContent = nts(e.teamname);
+            tr.appendChild(td2);
+            let td3 = document.createElement('td');
+            td3.textContent = nts(e.event);
+            tr.appendChild(td3);
+            let memberElement = document.createElement('td');
+            tr.appendChild(memberElement);
+
+            for (let i = 0; i < e.members.length; i++) {
+                const name = e.members[i];
+                let link = document.createElement("a");
+                link.textContent = "[" + name.id + "] " + name.first_name + " " + name.second_name;
+                link.href = "/sites/people/singleuser/index.html?id=" + encodeURIComponent(name.id);
+                memberElement.appendChild(link);
+                memberElement.appendChild(document.createTextNode("; "));
+            }
+
+
+            let td5 = document.createElement('td');
+            td5.textContent = nts(e.description);
+            tr.appendChild(td5);
+            table.appendChild(tr);
         }
     });
+    
 
     xhttp.open("GET", "/api/tempteams/");
     xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
@@ -37,22 +103,11 @@ function insertAllTempTeams() {
 }
 
 
-function createPeopleStringAndInsertAt(list, id) {
-    let str = "";
-    for (let i = 0; i < list.length; i++) {
-        const name = list[i];
-        str += "<a href='/sites/people/singleuser/index.html?id="+name.id+"'>["+name.id+"] "+name.first_name+" "+name.second_name+"</a>; ";
-        if (i == list.length-1) {
-            str = str.slice(0, -2);
-            document.getElementById(id).innerHTML = str;
-        }
-    }
-}
 
 function nts(str) {
     if (str == null) {
         return ""
-    } else {return str}
+    } else { return str }
 }
 
 insertAllTeams();

@@ -29,12 +29,15 @@ function getMemberData(cb) {
 }
 
 getMemberData((members) => {
-    let inputStr = ""
+    const tomselectList = document.getElementById("members");
     for (let i = 0; i < members.length; i++) {
         let member = members[i];
-        inputStr += "<option value='" + member.value + "'>" +member.text+ "</option>"
+        let elem = document.createElement("option");
+        elem.value = member.value;
+        elem.textContent = member.text;
+        tomselectList.appendChild(elem);
+
         if (i==members.length-1) {
-            document.getElementById("members").innerHTML = inputStr;
             new TomSelect("#members", {
                 plugins: {
                     remove_button:{

@@ -36,25 +36,23 @@ function loadData() {
 
         getMemberData((members) => {
             let childs = (data.childs);
-            let inputStr = ""
             for (let i = 0; i < members.length; i++) {
                 let member = members[i];
+                let option = document.createElement("option");
+                option.value = member.value;
+                option.text = member.text;
                 if (childs.includes(member.value)) {
-                    inputStr += "<option value='" + member.value + "' selected>" + member.text + "</option>";
-                } else {
-                    inputStr += "<option value='" + member.value + "'>" + member.text + "</option>"
+                    option.selected = true;
                 }
-                if (i == members.length - 1) {
-                    document.getElementById("childs").innerHTML = inputStr;
-                    new TomSelect("#childs", {
-                        plugins: {
-                            remove_button: {
-                                title: 'Mitglied entfernen',
-                            }
-                        }
-                    });
-                }
+                document.getElementById("childs").appendChild(option);
             }
+            new TomSelect("#childs", {
+                plugins: {
+                    remove_button: {
+                        title: 'Mitglied entfernen',
+                    }
+                }
+            });
         });
 
         document.getElementById("family_name").value = data.family_name;

@@ -33,29 +33,27 @@ function loadData() {
     xhttp.addEventListener("load", () => {
         let data = (JSON.parse(xhttp.responseText));
 
-        getMemberData((members) => {
-            let childs = JSON.parse(data.members);
-            let inputStr = ""
-            for (let i = 0; i < members.length; i++) {
-                let member = members[i];
-                if (childs.includes(member.value)) {
-                    inputStr += "<option value='" + member.value + "' selected>" +member.text+ "</option>";
-                } else {
-                    inputStr += "<option value='" + member.value + "'>" +member.text+ "</option>"
+        getMemberData((m) => {
+            let members = (data.members);
+            for (let i = 0; i < m.length; i++) {
+                let member = m[i];
+                let option = document.createElement("option");
+                option.value = member.value;
+                option.text = member.text;
+                if (members.includes(member.value)) {
+                    option.selected = true;
                 }
-                if (i==members.length-1) {
-                    document.getElementById("members").innerHTML = inputStr;
-                    new TomSelect("#members", {
-                        plugins: {
-                            remove_button: {
-                                title: 'Mitglied entfernen',
-                            }
-                        }
-                    });
-                }
+                document.getElementById("members").appendChild(option);
             }
-            
+            new TomSelect("#members", {
+                plugins: {
+                    remove_button: {
+                        title: 'Mitglied entfernen',
+                    }
+                }
+            });
         });
+
 
         document.getElementById("id").value = data.id;
         document.getElementById("teamname").value = data.teamname;

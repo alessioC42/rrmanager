@@ -21,14 +21,15 @@ function loadData() {
 }
 
 function createPeopleStringAndInsertAt(list, id) {
-    let str = "";
     for (let i = 0; i < list.length; i++) {
         const name = list[i];
-        str += "<a href='/sites/people/singleuser/index.html?id="+name.id+"'>["+name.id+"] "+name.first_name+" "+name.second_name+"</a>; ";
-        if (i == list.length-1) {
-            str = str.slice(0, -2);
-            document.getElementById(id).innerHTML = str;
-        }
+        const link = document.createElement("a");
+        link.href = "/sites/people/singleuser/index.html?id=" + encodeURIComponent(name.id);
+        const text = document.createTextNode("[" + name.id + "] " + name.first_name + " " + name.second_name);
+        link.appendChild(text);
+        const br = document.createElement("br");
+        document.getElementById(id).appendChild(link);
+        document.getElementById(id).appendChild(br);
     }
 }
 

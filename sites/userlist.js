@@ -5,12 +5,15 @@ function insertMembersToAllUserLists() {
         xhttp.addEventListener("load", () => {
             let response = JSON.parse(xhttp.responseText);
 
-            inputStr = "<option value='-'>";
+            const dataList = document.getElementById("datalist_members");
             for (let i = 0; i < response.length; i++) {
-                const member = response[i];
-                inputStr+="<option value='"+member.first_name+" "+member.second_name+"'>";
+            const member = response[i];
+            const option = document.createElement("option");
+            option.value = member.first_name + " " + member.second_name;
+            const textNode = document.createTextNode(option.value);
+            option.appendChild(textNode);
+            dataList.appendChild(option);
             }
-            document.getElementById("datalist_members").innerHTML = inputStr;
         });
         
         xhttp.open("GET", "/api/members/smaallist");

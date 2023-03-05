@@ -5,7 +5,71 @@ function insertAllPeople() {
         let data = JSON.parse(xhttp.responseText);
         for (let i = 0; i < data.length; i++) {
             const e = data[i];
-            table.innerHTML += "<td><a href='/sites/people/singleuser/index.html?id="+e.id+"'>"+e.id+"</a></td><td>"+e.first_name+"</td><td>"+e.second_name+"</td><td>"+e.gender+"</td><td>"+getAge(e.date_of_birth)+"</td><td>"+e.date_of_birth+"</td><td>"+nts(e.team)+"</td><td>"+nts(e.family)+"</td><td>"+e.address+"</td><td><a href='mailto:"+e.email+"'>"+e.email+"</a></td><td>"+e.phone+"</td><td>"+e.phone2+"</td><td>"+e.active+"</td><td>"+e.function+"</td>"
+            let row = table.insertRow(-1);
+
+            let idCell = row.insertCell(0);
+            let idLink = document.createElement("a");
+            idLink.href = "/sites/people/singleuser/index.html?id=" + encodeURIComponent(e.id);
+            idLink.textContent = e.id;
+            idCell.appendChild(idLink);
+
+            let firstNameCell = row.insertCell(1);
+            firstNameCell.textContent = e.first_name;
+
+            let secondNameCell = row.insertCell(2);
+            secondNameCell.textContent = e.second_name;
+
+            let genderCell = row.insertCell(3);
+            genderCell.textContent = e.gender;
+
+            let ageCell = row.insertCell(4);
+            ageCell.textContent = getAge(e.date_of_birth);
+
+            let dobCell = row.insertCell(5);
+            dobCell.textContent = e.date_of_birth;
+
+            let teamCell = row.insertCell(6);
+            let team = nts(e.team);
+            if (team == "-") {
+                teamCell.textContent = "-";
+            } else {
+                let teamLink = document.createElement("a");
+                teamLink.href = "/sites/teams/overview/index.html?id=" + encodeURIComponent(team);
+                teamLink.textContent = team;
+                teamCell.appendChild(teamLink);
+            }
+
+            let familyCell = row.insertCell(7);
+            let family = nts(e.family);
+            if (family == "-") {
+                familyCell.textContent = "-";
+            } else {
+                let familyLink = document.createElement("a");
+                familyLink.href = "/sites/familys/modify/index.html?id=" + encodeURIComponent(family);
+                familyLink.textContent = family;
+                familyCell.appendChild(familyLink);
+            }
+
+            let addressCell = row.insertCell(8);
+            addressCell.textContent = e.address;
+
+            let emailCell = row.insertCell(9);
+            let emailLink = document.createElement("a");
+            emailLink.href = "mailto:" + e.email;
+            emailLink.textContent = e.email;
+            emailCell.appendChild(emailLink);
+
+            let phoneCell = row.insertCell(10);
+            phoneCell.textContent = e.phone;
+
+            let phone2Cell = row.insertCell(11);
+            phone2Cell.textContent = e.phone2;
+
+            let activeCell = row.insertCell(12);
+            activeCell.textContent = e.active;
+
+            let functionCell = row.insertCell(13);
+            functionCell.textContent = e.function;
         }
     });
     

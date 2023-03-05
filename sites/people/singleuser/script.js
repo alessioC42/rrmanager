@@ -37,12 +37,13 @@ function loadTeamNames() {
     let xhttp = new XMLHttpRequest();
     xhttp.addEventListener("load", ()=> {
         let teamNames = JSON.parse(xhttp.responseText);
-        let options = "<option value='null'>kein Team</option>";
         for (let i = 0; i < teamNames.length; i++) {
             const element = teamNames[i].teamname;
-            options+="<option value='"+element+"'>"+element+"</option>"
+            const option = document.createElement('option');
+            option.value = element;
+            option.text = element;
+            document.getElementById("team").appendChild(option);
         }
-        document.getElementById("team").innerHTML = options;
     });
     
     xhttp.open("GET", "/api/teamnames");
@@ -54,7 +55,11 @@ function loadTeamNames() {
 
 function loadContactPersonData(familyName) {
     if (familyName == "" || familyName == "null" ||familyName == "-" ||familyName == null){
-        document.getElementById("contactperson").innerHTML = "<br><br><h3>Kontakt Person</h3><i>Es ist keine Familie Hinterlegt</i>";
+        const contactpersonOptions = document.getElementById("contactpersonOptions");
+        contactpersonOptions.innerHTML = "";
+        let noFamilyText = document.createElement("i");
+        noFamilyText.textContent = "Es ist keine Familie Hinterlegt";
+        contactpersonOptions.appendChild(noFamilyText);
     } else {
         let xhttp = new XMLHttpRequest();
         xhttp.addEventListener("load", ()=> {
@@ -79,7 +84,21 @@ function loadFamilyNames() {
     let xhttp = new XMLHttpRequest();
     xhttp.addEventListener("load", ()=> {
         let familyNames = JSON.parse(xhttp.responseText);
-        document.getElementById("family").innerHTML += "<option value='null'>keine Familie</option>"+familyNames.map(x => "<option value="+x+">"+x+"</option>").join("");
+        const familySelect = document.getElementById("family");
+
+        let nullOption = document.createElement("option");
+        nullOption.value="null";
+        nullOption.textContent = "keine Familie";
+        familySelect.appendChild(nullOption);
+
+        for (let i = 0; i < familyNames.length; i++) {
+            const familyname = familyNames[i];
+            let newOption = document.createElement("option");
+            newOption.value = familyname;
+            newOption.textContent = familyname;
+            familySelect.appendChild(newOption);
+        }
+        
     });
     
     xhttp.open("GET", "/api/familys?smaal=true");

@@ -27,22 +27,22 @@ function getMemberData(cb) {
 
 function loadData() {
     getMemberData((members) => {
-        let inputStr = ""
         for (let i = 0; i < members.length; i++) {
             let member = members[i];
-            inputStr += "<option value='" + member.value + "'>" +member.text+ "</option>"
-            if (i==members.length-1) {
-                document.getElementById("childs").innerHTML = inputStr;
-                new TomSelect("#childs", {
-                    plugins: {
-                        remove_button: {
-                            title: 'Mitglied entfernen',
-                        }
-                    }
-                });
-            }
+            let option = document.createElement("option");
+            option.value = member.value;
+            option.text = member.text;
+            document.getElementById("childs").appendChild(option);
         }
+        new TomSelect("#childs", {
+            plugins: {
+                remove_button: {
+                    title: 'Mitglied entfernen',
+                }
+            }
+        });
     });
+    
 }
 
 document.getElementById("submit").addEventListener("click", ()=> {
