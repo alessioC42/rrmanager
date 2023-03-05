@@ -3,11 +3,7 @@ const sqlite = require("sqlite3");
 const app = express();
 const port = 3000;
 
-function isValidSQLstring(string) {
-        return  !(["'", '"', ";", "--", "\\", "()", "LOAD_F­ILE­(", "@@"].some(substring=>string.includes(substring)));
-}
-
-var db = new sqlite.Database(__dirname+"/database.db", (err) => {
+const db = new sqlite.Database(__dirname+"/database.db", (err) => {
 if (err) {
     return console.error(err.message);
 }
@@ -322,6 +318,40 @@ app.get("/api/familys", (req, res) => {
         });
     }
 });
+
+app.get("/api/stats", (req, res) => {
+    db.get('SELECT COUNT(id) FROM People;', (err, membercount)=>{
+        db.get('SELECT COUNT(id) FROM People WHERE active="ja";', (err, activemembercount)=>{
+            db.get('SELECT COUNT(id) FROM People WHERE active="nein";', (err, inactivemembercount)=>{
+                db.all('SELECT date_of_birth FROM People;', (err, borndates)=>{
+                    res.send({
+                        membercount: membercount["COUNT(id)"],
+                        activemembercount: activemembercount["COUNT(id)"],
+                        inactivemembercount: inactivemembercount["COUNT(id)"],
+                        avgage: getAvg(borndates.map(x=>getAge(x.date_of_birth)))
+                    });
+                });
+            });
+        });
+    });
+});
+
+function getAvg(array) {
+    const total = array.reduce((acc, c) => acc + c, 0);
+    return total / array.length;
+  }
+
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
+}
 
 app.listen(port, ()=>{
     console.log("running...");

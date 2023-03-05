@@ -23,6 +23,4 @@ function insertMembersToAllUserLists() {
         xhttp.send();
     }
 }
-
 insertMembersToAllUserLists();
-
