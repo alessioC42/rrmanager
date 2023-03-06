@@ -69,8 +69,11 @@
             <p>
               durchschnittliches Alter: <b id="avgAge"></b>
             </p>
-            <h6>Was kann hier noch hin?</h6>
-
+            <h4>Kontaktperson suchen</h4>
+            <div class="input-group">
+                <input class="form-control" placeholder="Mitglied suchen..." list="datalist_members">
+                <button class="btn btn-outline-primary">Kontaktperson anzeigen</button>
+            </div>
           </div>
           <div class="col-md-3">
             <h4>Veranstaltungen</h4>
@@ -96,6 +99,7 @@
             </div>
           </div>
         </div>
+        <datalist id="datalist_members"></datalist>
     <script src="/sites/bootstrapV530alpha1.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="/sites/script.js"></script>
   </body>
