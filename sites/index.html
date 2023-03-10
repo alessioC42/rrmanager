@@ -1,6 +1,6 @@
 <html>
  <head>
-   <title>Navigation Bar With Dropdown Menu</title>
+   <title>rrmanager</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="/sites/bootstrapV530alpha1.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
@@ -60,7 +60,7 @@
               <button type="button" onclick="alert('noch net da')" class="btn btn-outline-dark">📧 E-Mail Verteiler</button>
             </div>
           </div>
-          <div class="col-md-6 ">
+          <div class="col-md-6">
             <h4>Mitglieder</h4>
             <div class="progress mt-1" role="progressbar" style="height: 30px">
               <div id="progressBarActive" class="progress-bar bg-success" style="width: 0%">Aktiv: 50%</div>
@@ -69,11 +69,88 @@
             <p>
               durchschnittliches Alter: <b id="avgAge"></b>
             </p>
-            <h4>Kontaktperson suchen</h4>
+            <h4>Kontaktinformationen abrufen</h4>
             <div class="input-group">
-                <input class="form-control" placeholder="Mitglied suchen..." list="datalist_members">
-                <button class="btn btn-outline-primary">Kontaktperson anzeigen</button>
+                <input class="form-control" placeholder="Mitglied suchen..." id="contactpersonsearchbar">
+                <button class="btn btn-outline-primary" id="contactpersonsearchbutton"  data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>Kontaktperson anzeigen</button>
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Kontaktinformationen</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body container-fluid" id="contactinformation">
+                    <div class="input-group">
+                      <label class="input-group-text">Name</label>
+                      <input id="disabledNameLabelInput" class="form-control" disabled>
+                    </div>
+                    <div class="input-group mt-1">
+                      <label class="input-group-text">Addresse</label>
+                      <input id="disabledAddressLabelInput" class="form-control" disabled>
+                    </div>
+                    <div class="input-group mt-1">
+                      <label class="input-group-text">E-Mail</label>
+                      <input id="disabledEmailLabelInput" class="form-control" disabled>
+                      <button id="emailButtonPerson" class="btn btn-outline-primary">@</button>
+                    </div>
+                    <div class="input-group mt-1">
+                      <label class="input-group-text">Telefon 1</label>
+                      <input id="disabledTelLabelInput" class="form-control" disabled>
+                      <button id="telButtonPerson" class="btn btn-outline-primary">📞</button>
+                    </div>
+                    <div class="input-group mt-1">
+                      <label class="input-group-text">Telefon 2</label>
+                      <input id="disabledTel2LabelInput" class="form-control" disabled>
+                      <button id="tel2ButtonPerson" class="btn btn-outline-primary">📞</button>
+                    </div>
+                    <div class="container-fluid card mt-2" id="card_contactperson">
+                      <h5 class="card-header">Kontaktperson</h5>
+                      <div class="card-body">
+                        <div class="input-group mt-1">
+                          <label class="input-group-text">Vorname</label>
+                          <input id="contactpersonFirstName" class="form-control" disabled>
+                        </div>
+                        <div class="input-group mt-1">
+                          <label class="input-group-text">Nachname</label>
+                          <input id="contactpersonSecondName" class="form-control" disabled>
+                        </div>
+                        <div class="input-group mt-1">
+                          <label class="input-group-text">Geschlecht</label>
+                          <input id="contactpersonGender" class="form-control" disabled>
+                        </div>
+                        <div class="input-group mt-1">
+                          <label class="input-group-text">Addresse</label>
+                          <input id="contactpersonAddress" class="form-control" disabled>
+                        </div>
+                        <div class="input-group mt-1">
+                          <label class="input-group-text">email</label>
+                          <input id="contactpersonEmail" class="form-control" disabled>
+                          <button id="contactpersonEmailButton" class="btn btn-outline-primary">@</button>
+                        </div>
+                        <div class="input-group mt-1">
+                          <label class="input-group-text">Tel 1</label>
+                          <input id="contactpersonTel" class="form-control" disabled>
+                          <button id="contactpersonTelButton" class="btn btn-outline-primary">📞</button>
+                        </div>
+                        <div class="input-group mt-1">
+                          <label class="input-group-text">Tel 2</label>
+                          <input id="contactpersonTel2" class="form-control" disabled>
+                          <button id="contactpersonTel2Button" class="btn btn-outline-primary">📞</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">schließen</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <p class="mt-1" id="contactpersonlabelarea" hidden>Suche ergab: <b id="contactpersonlabel"></b></p>
           </div>
           <div class="col-md-3">
             <h4>Veranstaltungen</h4>
@@ -99,7 +176,7 @@
             </div>
           </div>
         </div>
-        <datalist id="datalist_members"></datalist>
+    <script src="/sites/fuse.js"></script>
     <script src="/sites/bootstrapV530alpha1.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="/sites/script.js"></script>
   </body>

@@ -1,5 +1,6 @@
 const express = require("express");
 const sqlite = require("sqlite3");
+const fuse = require("fuse.js");
 const app = express();
 const port = 3000;
 
@@ -122,6 +123,56 @@ app.get("/api/teams/info", (req, res) => {
             res.send(rows);
         });
     });
+})
+
+app.get("/api/familys", (req, res) => {
+    if (!(req.query.smaal)) {
+        db.all("SELECT * FROM Familys", (err, rows) => {
+            for (let i = 0; i < rows.length; i++) {
+                let family = rows[i];
+                db.all("SELECT id, first_name, second_name FROM People WHERE family='"+family.family_name+"';", (err, members) => {
+                    if (err) {console.error(err);}
+                    rows[i].members = members;
+                    if (i == rows.length -1) {
+                        res.send(rows);
+                    }
+                });
+            }
+        });
+    }   else   {
+        db.all("SELECT family_name FROM Familys", (_err, rows) => {
+            res.send(rows.map(x => x.family_name));
+        });
+    }
+});
+
+app.get("/api/stats", (req, res) => {
+    db.get('SELECT COUNT(id) FROM People;', (err, membercount)=>{
+        db.get('SELECT COUNT(id) FROM People WHERE active="ja";', (err, activemembercount)=>{
+            db.get('SELECT COUNT(id) FROM People WHERE active="nein";', (err, inactivemembercount)=>{
+                db.all('SELECT date_of_birth FROM People;', (err, borndates)=>{
+                    res.send({
+                        membercount: membercount["COUNT(id)"],
+                        activemembercount: activemembercount["COUNT(id)"],
+                        inactivemembercount: inactivemembercount["COUNT(id)"],
+                        avgage: getAvg(borndates.map(x=>getAge(x.date_of_birth)))
+                    });
+                });
+            });
+        });
+    });
+});
+
+app.get("/api/contactperson", (req, res) => {
+    let id = req.query.id
+    db.get("SELECT address, email, phone, phone2, family FROM People WHERE id="+id+";", (_err, person) => {
+        db.get("SELECT * FROM Familys WHERE family_name='"+person.family+"';", (_err, family) => {
+            res.send({
+                person: person,
+                family: family
+            })
+        })
+    })
 })
 
 app.post("/api/teams/create", (req, res) => {
@@ -298,43 +349,7 @@ app.all("/api/teams/delete/", (req, res) => {
     });
 });
 
-app.get("/api/familys", (req, res) => {
-    if (!(req.query.smaal)) {
-        db.all("SELECT * FROM Familys", (err, rows) => {
-            for (let i = 0; i < rows.length; i++) {
-                let family = rows[i];
-                db.all("SELECT id, first_name, second_name FROM People WHERE family='"+family.family_name+"';", (err, members) => {
-                    if (err) {console.error(err);}
-                    rows[i].members = members;
-                    if (i == rows.length -1) {
-                        res.send(rows);
-                    }
-                });
-            }
-        });
-    }   else   {
-        db.all("SELECT family_name FROM Familys", (_err, rows) => {
-            res.send(rows.map(x => x.family_name));
-        });
-    }
-});
 
-app.get("/api/stats", (req, res) => {
-    db.get('SELECT COUNT(id) FROM People;', (err, membercount)=>{
-        db.get('SELECT COUNT(id) FROM People WHERE active="ja";', (err, activemembercount)=>{
-            db.get('SELECT COUNT(id) FROM People WHERE active="nein";', (err, inactivemembercount)=>{
-                db.all('SELECT date_of_birth FROM People;', (err, borndates)=>{
-                    res.send({
-                        membercount: membercount["COUNT(id)"],
-                        activemembercount: activemembercount["COUNT(id)"],
-                        inactivemembercount: inactivemembercount["COUNT(id)"],
-                        avgage: getAvg(borndates.map(x=>getAge(x.date_of_birth)))
-                    });
-                });
-            });
-        });
-    });
-});
 
 function getAvg(array) {
     const total = array.reduce((acc, c) => acc + c, 0);
