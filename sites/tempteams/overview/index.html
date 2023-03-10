@@ -5,7 +5,8 @@
 <head>
     <title>rrmanager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/sites/bootstrapV530alpha1.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="/sites/bootstrapV530alpha1.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="/sites/tom-select.css" rel="stylesheet">
 </head>
 
@@ -58,32 +59,33 @@
         <div class="col-md-6">
             <div class="container-fluid">
                 <br>
-                <h1>Team Hinzufügen</h1>
+                <h1>temporäres Team Hinzufügen</h1>
                 <div class="mb-3 row">
-                    <label for="id" class="col-sm-2 col-form-label">ID</label>
-                    <div class="col-sm-10">
+                    <div class="input-group">
+                        <label class="input-group-text">ID</label>
                         <input id="id" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="teamname" class="col-sm-2 col-form-label">Teamname</label>
-                    <div class="col-sm-10">
-                        <input id="teamname" class="form-control">
+                    <div class="input-group">
+                        <label class="input-group-text">Teamname</label>
+                        <input id="teamname" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="event" class="col-sm-2 col-form-label">Veransteltung</label>
-                    <div class="col-sm-10">
-                        <input id="event" list="datalist_members" class="form-control members_input">
+                    <div class="input-group">
+                        <label class="input-group-text">Veranstalung</label>
+                        <input id="event" class="form-control" disabled>
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <label for="description" class="col-sm-2 col-form-label">Beschreibung</label>
-                    <textarea class="form-control" id="description"></textarea>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="description"></textarea>
+                    <label for="floatingTextarea">beschreibung</label>
                 </div>
                 <div class="mb-3 row">
                     <label for="members" class="col-sm-2 col-form-label">Mitglieder</label>
-                    <select id="members" multiple placeholder="Mitglieder Auswählen ..." autocomplete="off" name="state[]"></select>
+                    <select id="members" multiple placeholder="Mitglieder Auswählen ..." autocomplete="off"
+                        name="state[]"></select>
                 </div>
                 <button id="submit" class="btn btn-primary">änderungen übernehmen</button>
                 <button id="delete_button" class="btn btn-danger">Team Löschen</button>
@@ -96,6 +98,9 @@
 
     <script src="/sites/tom-select.complete.min.js"></script>
     <script src="/sites/tempteams/overview/script.js"></script>
-    <script src="/sites/bootstrapV530alpha1.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="/sites/bootstrapV530alpha1.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

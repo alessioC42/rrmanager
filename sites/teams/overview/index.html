@@ -82,10 +82,11 @@
                         <input class="form-control members_input" list="datalist_members" id="leaderID3">
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <label for="extra" class="col-sm-2 col-form-label">Zusatz</label>
-                    <textarea class="form-control" id="extra"></textarea>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="extra"></textarea>
+                    <label for="floatingTextarea">Zusatz</label>
                 </div>
+                <br>
                 <button id="submit" class="btn btn-primary">Änderungen übernehmen</button>
                 <button id="delete_button" class="btn btn-danger">Team Löschen</button>
                 <datalist id="datalist_members"></datalist>
