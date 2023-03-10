@@ -82,31 +82,32 @@ app.get("/api/teamnames/", (req, res) => {
 });
 
 app.get("/api/teams/", (req, res) => {
-    db.all("SELECT * FROM Teams", (err, rows) => {
+    db.all("SELECT * FROM Teams", (_err, rows) => {
+        let data = rows;
+        let counter = 0;
         for (let i = 0; i < rows.length; i++) {
-            let team = rows[i];
-            db.all("SELECT id, first_name, second_name FROM People WHERE team = '"+team.teamname+"';", (err, members) => {
-                if (err) {console.error(err);}
-                rows[i].members = members;
-
-                if (i == rows.length -1) {
-                    res.send(rows);
+            db.all("SELECT id, first_name, second_name FROM People WHERE team='"+rows[i].teamname+"';", (_err, members) => {
+                data[i].members = members;
+                counter++;
+                if (counter == rows.length) {
+                    res.send(data);
                 }
             });
         }
     });
 });
 
+
 app.get("/api/tempteams/", (req, res) => {
     db.all("SELECT * FROM Tempteams", (err, rows) => {
+        let counter = 0;
         for (let i = 0; i < rows.length; i++) {
-            let team = rows[i];
-            let members = "("+team.members.slice(1, -1)+")"
-            db.all("SELECT id, first_name, second_name FROM People WHERE id In "+members+";", (err, members) => {
-                if (err) {console.error(err);}
-                rows[i].members = members;
-
-                if (i == rows.length -1) {
+            let members = "("+rows[i].members.slice(1, -1)+")";
+            delete rows[i].members;
+            db.all("SELECT id, first_name, second_name FROM People WHERE id In "+members+";", (err, mem) => {
+                rows[i].members = mem;
+                counter++;
+                if (counter == rows.length) {
                     res.send(rows);
                 }
             });
