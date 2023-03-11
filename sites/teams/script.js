@@ -54,55 +54,14 @@ function insertAllTeams() {
     xhttp.send();
 }
 
-function insertAllTempTeams() {
-    let table = document.getElementById("table_tempteams");
-    let xhttp = new XMLHttpRequest();
-    xhttp.addEventListener("load", () => {
-        let data = JSON.parse(xhttp.responseText);
-        for (let i = 0; i < data.length; i++) {
-            const e = data[i];
-            let tr = document.createElement('tr');
-            let td1 = document.createElement('td');
-            let a = document.createElement('a');
-            a.href = '/sites/tempteams/overview/index.html?id=' + nts(e.id);
-            a.textContent = nts(e.id);
-            td1.appendChild(a);
-            tr.appendChild(td1);
-            let td2 = document.createElement('td');
-            td2.textContent = nts(e.teamname);
-            tr.appendChild(td2);
-            let td3 = document.createElement('td');
-            td3.textContent = nts(e.event);
-            tr.appendChild(td3);
-            let memberElement = document.createElement('td');
-            tr.appendChild(memberElement);
-
-            for (let i = 0; i < e.members.length; i++) {
-                const name = e.members[i];
-                let link = document.createElement("a");
-                link.textContent = "[" + name.id + "] " + name.first_name + " " + name.second_name;
-                link.href = "/sites/people/singleuser/index.html?id=" + encodeURIComponent(name.id);
-                memberElement.appendChild(link);
-                memberElement.appendChild(document.createTextNode("; "));
-            }
-
-
-            let td5 = document.createElement('td');
-            td5.textContent = nts(e.description);
-            tr.appendChild(td5);
-            table.appendChild(tr);
-        }
-    });
-    
-
-    xhttp.open("GET", "/api/tempteams/");
-    xhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
-    xhttp.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
-    xhttp.setRequestHeader("Pragma", "no-cache");
-    xhttp.send();
+function memberstring(value) {
+    let x = "";
+    for (let i = 0; i < value.length; i++) {
+        const member = value[i];
+        x += "<a href='/sites/people/singleuser/index.html?id=" + member.id + "'>" + member.first_name + " " + member.second_name + "</a>; "
+    }
+    return x;
 }
-
-
 
 function nts(str) {
     if (str == null) {
@@ -110,5 +69,43 @@ function nts(str) {
     } else { return str }
 }
 
-insertAllTeams();
-insertAllTempTeams();
+//insertAllTeams();
+//insertAllTempTeams();
+
+
+$('#tempteamtable').bootstrapTable()
+$('#teamtable').bootstrapTable()
+$('#tempteamtable').click((ev) => {
+    try {
+        let val = ev.target.parentElement.parentElement.firstChild.childNodes[1].innerText;
+        if (!isNaN(val)) {
+            if (!(val == "")) {
+                window.open("/sites/tempteams/overview/index.html?id=" + val)
+            }
+        } else {
+            throw Error("");
+        }
+    } catch (error) {
+        try {
+            let val = ev.target.parentElement.childNodes[0].innerText;
+            if (!isNaN(val)) {
+                window.open("/sites/tempteams/overview/index.html?id=" + val)
+            }
+        } catch (_err) { }
+    }
+});
+
+$('#teamtable').click((ev) => {
+    if (ev.target.hasAttribute("data-index") || ev.target.hasAttribute("colspan") || (ev.target.classList).contains("card-view-title") || (ev.target.classList).contains("card-view-value") || (ev.target.classList).contains("card-view") || (ev.target.classList).contains("card-views")) {
+        console.log("nr1")
+        val = ev.target.parentElement.parentElement.firstChild.childNodes[1].innerText;
+        window.open("/sites/teams/overview/index.html?id=" + val)
+    } else {
+        if (!(ev.target.classList).contains("sortable")) {
+            console.log("nr2")
+            console.log(ev.target)
+            let val = ev.target.parentElement.childNodes[0].innerText;
+            window.open("/sites/teams/overview/index.html?id=" + val);
+        }
+    }
+});

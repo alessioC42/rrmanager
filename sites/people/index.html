@@ -1,93 +1,106 @@
 <!DOCTYPE html>
 
 <html>
- <head>
-   <title>rrmanager</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href="/sites/bootstrapV530alpha1.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <img src="/sites/icon.svg" alt="Bootstrap" width="40" height="30">
-            RR201-Mitgliederverwaltung
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" href="/sites/people/index.html">Mitglieder</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sites/teams/index.html">Teams</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sites/familys/index.html">Familien</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Jahresbeitrag</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Veranstaltungen/Camps</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Tools
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">E-Mail Verteiler</a></li>
-                  <li><a class="dropdown-item" href="#">Server Status</a></li>
-                  <li><a class="dropdown-item" href="#">SQL logs</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    
-        <br>
-        <h1 class="h1 text-center">RR-201 - Mitglieder</h1>
-        <div class="container ">
-          <div class="row p-2">
-            <div class="col text-center">
-            <button class="btn btn-primary" onclick="window.location.pathname = '/sites/people/addmember/index.html'">neues Mitglied Erstellen</button>
-            </div>
-          </div>
-          <div class="row p-2 text-center">
-            <input id="searchbar" class="form-control" placeholder="Suche...">
-          </div>
-        </div>
-        
-      <div class="container-fluid">
 
-        <table id="memberlist" class="sortable table table-striped">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>vorname</th>
-                    <th>Nachname</th>
-                    <th>Geschlecht</th>
-                    <th>Alter</th>
-                    <th>Geburtstag</th>
-                    <th>Team</th>
-                    <th>Familie</th>
-                    <th>Addresse</th>
-                    <th>E-Mail</th>
-                    <th>Telefon</th>
-                    <th>Telefon2</th>
-                    <th>Aktiv?</th>
-                    <th>Zusatz</th>
-                </tr>
-            </thead>
-            <tbody id="table"></tbody>
-        </table>
+<head>
+  <title>rrmanager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/sites/modules/bootstrap-table.min.css">
+  <link rel="stylesheet" href="/sites/modules/bootstrap-icons.css">
+  <link href="/sites/modules/bootstrapV530alpha1.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/sites/icon.svg" alt="Bootstrap" width="40" height="30">
+        RR201-Mitgliederverwaltung
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="/sites/people/index.html">Mitglieder</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sites/teams/index.html">Teams</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sites/familys/index.html">Familien</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Jahresbeitrag</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Veranstaltungen/Camps</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tools
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">E-Mail Verteiler</a></li>
+              <li><a class="dropdown-item" href="#">Server Status</a></li>
+              <li><a class="dropdown-item" href="#">SQL logs</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    <script src="/sites/fuse.js"></script>
-    <script src="/sites/sorttable.js"></script>
-    <script src="/sites/bootstrapV530alpha1.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="/sites/people/script.js"></script>
-  </body>
+  </nav>
+
+  <br>
+  <h1 class="h1 text-center">RR-201 - Mitglieder</h1>
+  <div class="container ">
+    <div class="row p-2">
+      <div class="col text-center">
+        <a class="btn btn-primary" href='/sites/people/addmember/index.html'>neues
+          Mitglied Erstellen</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <table
+    id="table"
+    data-search="true"
+    data-show-columns="true"
+    data-show-multi-sort="true"
+    data-show-toggle="true"
+    data-show-refresh="true"
+    data-show-fullscreen="true"
+    data-url="/api/users"
+    class="table table-striped">
+    <thead>
+      <tr>
+          <th data-field="id" data-sortable="true">ID</th>
+          <th data-field="first_name" data-sortable="true">Vorname</th>
+          <th data-field="second_name" data-sortable="true">Nachname</th>
+          <th data-field="gender" data-sortable="true">Geschlecht</th>
+          <th data-field="age" data-sortable="true">Alter</th>
+          <th data-field="date_of_birth" data-sortable="true">Geburtstag</th>
+          <th data-field="team" data-sortable="true" data-formatter="teamformatter">Team</th>
+          <th data-field="family" data-sortable="true" data-formatter="famformatter">Familie</th>
+          <th data-field="address" data-sortable="true">Addresse</th>
+          <th data-field="email" data-sortable="true" data-formatter="mailformatter">E-Mail</th>
+          <th data-field="phone" data-sortable="true" data-formatter="telformatter">Telefon</th>
+          <th data-field="phone2" data-sortable="true" data-formatter="telformatter">Telefon 2</th>
+          <th data-field="active" data-sortable="true">Aktiv?</th>
+          <th data-field="function" data-sortable="true">Zusatz</th>
+      </tr>
+  </thead>
+    </table>
+  </div>
+  <script src="/sites/modules/jquery.min.js"></script>
+  <script src="/sites/modules/bootstrapV530alpha1.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="/sites/people/script.js"></script>
+  <script src="/sites/modules/bootstrap-table.min.js"></script>
+</body>
+
 </html>

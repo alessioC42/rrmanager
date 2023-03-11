@@ -5,7 +5,9 @@
 <head>
     <title>rrmanager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/sites/bootstrapV530alpha1.css" rel="stylesheet"
+    <link rel="stylesheet" href="/sites/modules/bootstrap-table.min.css">
+    <link rel="stylesheet" href="/sites/modules/bootstrap-icons.css">
+    <link href="/sites/modules/bootstrapV530alpha1.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
@@ -61,18 +63,26 @@
                 <button class="btn btn-primary"
                     onclick="window.location.pathname = '/sites/teams/create/index.html'">neues Team Erstellen</button>
             </div>
-            <table class="sortable table table-striped">
+            <table
+            id="teamtable"
+            data-search="true"
+            data-show-columns="true"
+            data-show-multi-sort="true"
+            data-show-toggle="true"
+            data-show-refresh="true"
+            data-show-fullscreen="true"
+            data-url="/api/teams/"
+            class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Teamname</th>
-                        <th>Leitung 1</th>
-                        <th>Leitung 2</th>
-                        <th>Leitung 3</th>
-                        <th>Mitglieder</th>
-                        <th>Zusatz</th>
+                        <th data-field="teamname" data-sortable="true">Teamname</th>
+                        <th data-field="leaderID1" data-sortable="true" data-formatter="nts">Leitung 1</th>
+                        <th data-field="leaderID2" data-sortable="true" data-formatter="nts">Leitung 2</th>
+                        <th data-field="leaderID3" data-sortable="true" data-formatter="nts">Leitung 3</th>
+                        <th data-field="extra" data-sortable="true" data-formatter="nts">Zusatz</th>
+                        <th data-field="members" data-sortable="true" data-formatter="memberstring">Mitglieder</th>
                     </tr>
                 </thead>
-                <tbody id="table_teams"></tbody>
             </table>
         </center>
     </div>
@@ -86,24 +96,33 @@
                     onclick="window.location.pathname = '/sites/tempteams/create/index.html'">neues temporäres Team
                     Erstellen</button>
             </div>
-            <table class="sortable table table-striped">
+            <table 
+            id="tempteamtable"
+            data-search="true"
+            data-show-columns="true"
+            data-show-multi-sort="true"
+            data-show-toggle="true"
+            data-show-refresh="true"
+            data-show-fullscreen="true"
+            data-url="/api/tempteams/"
+            class="table table-striped">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Teamname</th>
-                        <th>Event</th>
-                        <th>Mitglieder</th>
-                        <th>Beschreibung</th>
+                        <th data-field="id" data-sortable="true">ID</th>
+                        <th data-field="teamname" data-sortable="true">Teamname</th>
+                        <th data-field="event" data-sortable="true">Event</th>
+                        <th data-field="description" data-sortable="true">Beschreibung</th>
+                        <th data-field="members" data-sortable="true" data-formatter="memberstring">Mitglieder</th>
                     </tr>
                 </thead>
-                <tbody id="table_tempteams"></tbody>
             </table>
         </center>
     </div>
-    <script src="/sites/sorttable.js"></script>
-    <script src="/sites/bootstrapV530alpha1.js"
+    <script src="/sites/modules/jquery.min.js"></script>
+    <script src="/sites/modules/bootstrapV530alpha1.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+    <script src="/sites/modules/bootstrap-table.min.js"></script>
     <script src="/sites/teams/script.js"></script>
 </body>
 
